@@ -43,8 +43,8 @@ class ViewController: UIViewController {
             tl.textColor = UIColor(hexString: "#FAFAFA", alpha: 1.0)
             tl.font = font
             tl.textAlignment = NSTextAlignment.center
-            tl.lineBreakMode = NSLineBreakMode.byWordWrapping
-            tl.numberOfLines = 3
+            tl.lineBreakMode = NSLineBreakMode.byTruncatingTail
+            tl.numberOfLines = 4
             tl.translatesAutoresizingMaskIntoConstraints = false
         return tl
         
@@ -78,7 +78,7 @@ class ViewController: UIViewController {
         setupButtonsContainerView()
         setupLabelsInsideLabelsContainerView()
         timerLabel.text = "33:09"
-        taskLabel.text = "Create an interface for TimeTracker App"
+        taskLabel.text = "Create an interface for TimeTracker App. Create two containers first. Then two labels with 0.5 multipliers. Then create your buttons in the container below."
     }
     
     func setupLabelsContainerView() {
