@@ -12,7 +12,7 @@ class ViewController: UIViewController {
 
     let labelsContainerView: UIView = {
         let lcv = UIView()
-        lcv.backgroundColor = UIColor.white
+        lcv.backgroundColor = UIColor.clear
         lcv.translatesAutoresizingMaskIntoConstraints = false
         
         return lcv
@@ -31,8 +31,12 @@ class ViewController: UIViewController {
     
     let timerLabel : UILabel = {
         let tl = UILabel()
-        let font = UIFont(name: "HelveticaNeue-Thin", size: 64.0)
+        let font = UIFont(name: "HelveticaNeue-Thin", size: 104.0)
+        tl.textColor = UIColor(hexString: "#FAFAFA", alpha: 1.0)
         tl.font = font
+        tl.textAlignment = NSTextAlignment.center
+        tl.translatesAutoresizingMaskIntoConstraints = false
+
         return tl
     }()
     
@@ -64,17 +68,30 @@ class ViewController: UIViewController {
         
         view.addSubview(labelsContainerView)
         view.addSubview(buttonsContainerView)
+        labelsContainerView.addSubview(timerLabel)
+        
         setupLabelsContainerView()
         setupButtonsContainerView()
+        setupLabelsInsideLabelsContainerView()
+        timerLabel.text = "33:09"
     }
     
     func setupLabelsContainerView() {
-        let topAnchorHeight = UIApplication.shared.statusBarFrame.height + 20
+        let topAnchorHeight = UIApplication.shared.statusBarFrame.height + 40
         labelsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         labelsContainerView.topAnchor.constraint(equalTo: view.topAnchor, constant:topAnchorHeight).isActive = true
         labelsContainerView.widthAnchor.constraint(equalTo:view.widthAnchor, constant:-20).isActive = true
         labelsContainerView.heightAnchor.constraint(equalTo:view.widthAnchor, multiplier: 0.75).isActive = true
     }
+    
+    func setupLabelsInsideLabelsContainerView() {
+        
+        timerLabel.centerXAnchor.constraint(equalTo: labelsContainerView.centerXAnchor).isActive = true
+        timerLabel.topAnchor.constraint(equalTo: labelsContainerView.topAnchor).isActive = true
+        timerLabel.widthAnchor.constraint(equalTo: labelsContainerView.widthAnchor, constant: -20).isActive = true
+        timerLabel.heightAnchor.constraint(equalTo: labelsContainerView.widthAnchor, multiplier: 0.75).isActive = true
+    }
+    
     
     func setupButtonsContainerView() {
         
@@ -84,6 +101,8 @@ class ViewController: UIViewController {
         buttonsContainerView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75).isActive = true
     
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
