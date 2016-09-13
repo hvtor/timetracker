@@ -88,9 +88,12 @@ class ViewController: UIViewController {
         view.addSubview(buttonsContainerView)
         labelsContainerView.addSubview(timerLabel)
         labelsContainerView.addSubview(taskLabel)
+        buttonsContainerView.addSubview(playButtonContainerView)
         
+        // Setup of View Constraints
         setupLabelsContainerView()
         setupButtonsContainerView()
+        setupPlayContainer()
         setupLabelsInsideLabelsContainerView()
         timerLabel.text = "33:09"
         taskLabel.text = "Create an interface for TimeTracker App. Create two containers first. Then two labels with 0.5 multipliers. Then create your buttons in the container below."
@@ -130,6 +133,10 @@ class ViewController: UIViewController {
     }
     
     func setupPlayContainer() {
+        playButtonContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        playButtonContainerView.topAnchor.constraint(equalTo: buttonsContainerView.topAnchor).isActive = true
+        playButtonContainerView.widthAnchor.constraint(equalTo: buttonsContainerView.widthAnchor).isActive = true
+        playButtonContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25).isActive = true
         
     }
 
