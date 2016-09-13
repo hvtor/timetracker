@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 class ViewController: UIViewController {
 
@@ -61,13 +62,13 @@ class ViewController: UIViewController {
             tl.font = font
             tl.textAlignment = NSTextAlignment.center
             tl.lineBreakMode = NSLineBreakMode.byTruncatingTail
-            tl.numberOfLines = 4
+            tl.numberOfLines = 2
             tl.translatesAutoresizingMaskIntoConstraints = false
         return tl
         
     }()
     
-    let showTasksListButton: ActionButton = {
+    let tasksListButton: ActionButton = {
         let tasksBtn = ActionButton()
         
         return tasksBtn
@@ -75,7 +76,8 @@ class ViewController: UIViewController {
     
     let logTimeButton: ActionButton = {
         let logBtn = ActionButton()
-        
+        logBtn.translatesAutoresizingMaskIntoConstraints = false
+
         return logBtn
     }()
     
@@ -84,6 +86,13 @@ class ViewController: UIViewController {
     let playPauseButton: PlayPauseButton = {
         let playBtn = PlayPauseButton()
         
+        playBtn.layer.backgroundColor = UIColor(hexString: "#0082c7", alpha: 1.0).cgColor
+        playBtn.layer.borderWidth = 15.0
+        playBtn.layer.borderColor = UIColor(hexString: "#041922", alpha: 1.0).cgColor
+        
+        playBtn.translatesAutoresizingMaskIntoConstraints = false
+        playBtn.clipsToBounds = true
+
         return playBtn
     }()
     
@@ -97,20 +106,27 @@ class ViewController: UIViewController {
         labelsContainerView.addSubview(timerLabel)
         labelsContainerView.addSubview(taskLabel)
         buttonsContainerView.addSubview(playButtonContainerView)
-        playButtonContainerView.addSubview(actionButtonsContainerView)
+        playButtonContainerView.addSubview(playPauseButton)
+        buttonsContainerView.addSubview(actionButtonsContainerView)
         
         // Setup of View Constraints
         setupLabelsContainerView()
-        setupButtonsContainerView()
-        setupPlayContainer()
         setupLabelsInsideLabelsContainerView()
-        setupActionButtonsContainer()
+        
+        setupButtonsContainerView()
+            setupPlayContainer()
+            setupPlayPauseButton()
+        
+        
+            setupActionButtonsContainer()
+        
+        
         timerLabel.text = "33:09"
         taskLabel.text = "Create an interface for TimeTracker App. Create two containers first. Then two labels with 0.5 multipliers. Then create your buttons in the container below."
     }
     
     func setupLabelsContainerView() {
-        let topAnchorHeight = UIApplication.shared.statusBarFrame.height + 40
+        let topAnchorHeight = UIApplication.shared.statusBarFrame.height
         labelsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         labelsContainerView.topAnchor.constraint(equalTo: view.topAnchor, constant:topAnchorHeight).isActive = true
         labelsContainerView.widthAnchor.constraint(equalTo:view.widthAnchor, constant:-20).isActive = true
@@ -134,30 +150,34 @@ class ViewController: UIViewController {
     }
     
     func setupButtonsContainerView() {
-        
         buttonsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         buttonsContainerView.topAnchor.constraint(equalTo: labelsContainerView.bottomAnchor, constant:20).isActive = true
         buttonsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant:-20).isActive = true
         buttonsContainerView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75).isActive = true
-    
     }
     
     func setupPlayContainer() {
-        playButtonContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        playButtonContainerView.centerXAnchor.constraint(equalTo: buttonsContainerView.centerXAnchor).isActive = true
         playButtonContainerView.topAnchor.constraint(equalTo: buttonsContainerView.topAnchor).isActive = true
         playButtonContainerView.widthAnchor.constraint(equalTo: buttonsContainerView.widthAnchor).isActive = true
         playButtonContainerView.heightAnchor.constraint(equalTo: buttonsContainerView.heightAnchor, multiplier: 0.60).isActive = true
         
     }
     
-    func setupActionButtonsContainer() {
-        actionButtonsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    func setupPlayPauseButton() {
+        playPauseButton.centerXAnchor.constraint(equalTo: playButtonContainerView.centerXAnchor).isActive = true
+        playPauseButton.topAnchor.constraint(equalTo: playButtonContainerView.topAnchor, constant: 10).isActive = true
+        playPauseButton.widthAnchor.constraint(equalTo: playButtonContainerView.heightAnchor, multiplier: 0.9).isActive = true
+        playPauseButton.heightAnchor.constraint(equalTo: playButtonContainerView.heightAnchor, multiplier: 0.9).isActive = true
+    }
+    
+    func setupActionButtonsContainer() {        
+        actionButtonsContainerView.centerXAnchor.constraint(equalTo: buttonsContainerView.centerXAnchor).isActive = true
         actionButtonsContainerView.topAnchor.constraint(equalTo: playButtonContainerView.bottomAnchor).isActive = true
         actionButtonsContainerView.widthAnchor.constraint(equalTo: buttonsContainerView.widthAnchor).isActive = true
-        actionButtonsContainerView.heightAnchor.constraint(equalTo: buttonsContainerView.heightAnchor, multiplier: 0.40).isActive = true
-        
+        actionButtonsContainerView.heightAnchor.constraint(equalTo: buttonsContainerView.widthAnchor, multiplier: 0.35).isActive = true
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -16,5 +16,12 @@ class PlayPauseButton: UIButton {
         self.layer.borderColor = UIColor(hexString: "#003554", alpha: 1.0).cgColor
         
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        layer.cornerRadius = bounds.size.height / 2.0
+        clipsToBounds = true
+    }
 
 }

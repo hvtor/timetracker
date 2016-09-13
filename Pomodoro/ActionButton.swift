@@ -14,5 +14,12 @@ class ActionButton: UIButton {
         self.layer.backgroundColor = UIColor.init(hexString: "#FEFEFE", alpha: 1.0).cgColor
         self.layer.cornerRadius = self.frame.width/2
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        layer.cornerRadius = bounds.size.height / 2.0
+        clipsToBounds = true
+    }
 
 }
