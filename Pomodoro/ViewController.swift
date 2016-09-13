@@ -27,6 +27,15 @@ class ViewController: UIViewController {
         return bcv
     }()
     
+    let playButtonContainerView: UIView = {
+        let pbc = UIView()
+        pbc.backgroundColor = UIColor.orange
+        
+        pbc.translatesAutoresizingMaskIntoConstraints = false
+        return pbc
+ 
+    }()
+    
     let timerLabel : UILabel = {
         let tl = UILabel()
             let font = UIFont(name: "Avenir-Heavy", size: 104.0)
@@ -50,18 +59,24 @@ class ViewController: UIViewController {
         
     }()
     
-    let logTimeButton: ActionButton = {
-        let ltb = ActionButton()
+    let showTasksListButton: ActionButton = {
+        let tasksBtn = ActionButton()
         
-        return ltb
+        return tasksBtn
+    }()
+    
+    let logTimeButton: ActionButton = {
+        let logBtn = ActionButton()
+        
+        return logBtn
     }()
     
     
     
     let playPauseButton: PlayPauseButton = {
-        let ppb = PlayPauseButton()
+        let playBtn = PlayPauseButton()
         
-        return ppb
+        return playBtn
     }()
     
     override func viewDidLoad() {
@@ -105,7 +120,6 @@ class ViewController: UIViewController {
         
     }
     
-    
     func setupButtonsContainerView() {
         
         buttonsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -115,7 +129,9 @@ class ViewController: UIViewController {
     
     }
     
-    
+    func setupPlayContainer() {
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
