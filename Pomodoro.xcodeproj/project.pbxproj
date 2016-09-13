@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		E9C945971D885A370068DC0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C945961D885A370068DC0F /* AppDelegate.swift */; };
 		E9C945991D885A370068DC0F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C945981D885A370068DC0F /* ViewController.swift */; };
-		E9C9459C1D885A370068DC0F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9C9459A1D885A370068DC0F /* Main.storyboard */; };
 		E9C9459F1D885A370068DC0F /* Pomodoro.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9C9459D1D885A370068DC0F /* Pomodoro.xcdatamodeld */; };
 		E9C945A11D885A370068DC0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9C945A01D885A370068DC0F /* Assets.xcassets */; };
 		E9C945A41D885A370068DC0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9C945A21D885A370068DC0F /* LaunchScreen.storyboard */; };
 		E9C945AF1D885A370068DC0F /* PomodoroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C945AE1D885A370068DC0F /* PomodoroTests.swift */; };
 		E9C945BA1D885A370068DC0F /* PomodoroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C945B91D885A370068DC0F /* PomodoroUITests.swift */; };
+		E9C945C81D88650D0068DC0F /* PlayPauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C945C71D88650D0068DC0F /* PlayPauseButton.swift */; };
+		E9C945CA1D8875040068DC0F /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C945C91D8875040068DC0F /* ActionButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +39,6 @@
 		E9C945931D885A370068DC0F /* Pomodoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pomodoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9C945961D885A370068DC0F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9C945981D885A370068DC0F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E9C9459B1D885A370068DC0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E9C9459E1D885A370068DC0F /* Pomodoro.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pomodoro.xcdatamodel; sourceTree = "<group>"; };
 		E9C945A01D885A370068DC0F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E9C945A31D885A370068DC0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +49,8 @@
 		E9C945B51D885A370068DC0F /* PomodoroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PomodoroUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9C945B91D885A370068DC0F /* PomodoroUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroUITests.swift; sourceTree = "<group>"; };
 		E9C945BB1D885A370068DC0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9C945C71D88650D0068DC0F /* PlayPauseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayPauseButton.swift; sourceTree = "<group>"; };
+		E9C945C91D8875040068DC0F /* ActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +103,8 @@
 			children = (
 				E9C945961D885A370068DC0F /* AppDelegate.swift */,
 				E9C945981D885A370068DC0F /* ViewController.swift */,
-				E9C9459A1D885A370068DC0F /* Main.storyboard */,
+				E9C945C71D88650D0068DC0F /* PlayPauseButton.swift */,
+				E9C945C91D8875040068DC0F /* ActionButton.swift */,
 				E9C945A01D885A370068DC0F /* Assets.xcassets */,
 				E9C945A21D885A370068DC0F /* LaunchScreen.storyboard */,
 				E9C945A51D885A370068DC0F /* Info.plist */,
@@ -240,7 +243,6 @@
 			files = (
 				E9C945A41D885A370068DC0F /* LaunchScreen.storyboard in Resources */,
 				E9C945A11D885A370068DC0F /* Assets.xcassets in Resources */,
-				E9C9459C1D885A370068DC0F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,9 +267,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9C945C81D88650D0068DC0F /* PlayPauseButton.swift in Sources */,
 				E9C9459F1D885A370068DC0F /* Pomodoro.xcdatamodeld in Sources */,
 				E9C945991D885A370068DC0F /* ViewController.swift in Sources */,
 				E9C945971D885A370068DC0F /* AppDelegate.swift in Sources */,
+				E9C945CA1D8875040068DC0F /* ActionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,14 +307,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E9C9459A1D885A370068DC0F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E9C9459B1D885A370068DC0F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E9C945A21D885A370068DC0F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

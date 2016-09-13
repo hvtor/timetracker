@@ -10,9 +10,15 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    
+    let logTimeButton = 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+     
+        view.backgroundColor = UIColor(hexString: "#003554", alpha: 1.0)
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
