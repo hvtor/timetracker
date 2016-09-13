@@ -20,7 +20,8 @@ class ViewController: UIViewController {
     
     let buttonsContainerView: UIView = {
         let bcv = UIView()
-        bcv.backgroundColor = UIColor.blue
+        bcv.backgroundColor = UIColor.white
+        
         bcv.translatesAutoresizingMaskIntoConstraints = false
         
         return bcv
@@ -64,6 +65,7 @@ class ViewController: UIViewController {
         view.addSubview(labelsContainerView)
         view.addSubview(buttonsContainerView)
         setupLabelsContainerView()
+        setupButtonsContainerView()
     }
     
     func setupLabelsContainerView() {
@@ -74,6 +76,14 @@ class ViewController: UIViewController {
         labelsContainerView.heightAnchor.constraint(equalTo:view.widthAnchor, multiplier: 0.75).isActive = true
     }
     
+    func setupButtonsContainerView() {
+        
+        buttonsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        buttonsContainerView.topAnchor.constraint(equalTo: labelsContainerView.bottomAnchor, constant:20).isActive = true
+        buttonsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant:-20).isActive = true
+        buttonsContainerView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75).isActive = true
+    
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
