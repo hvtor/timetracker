@@ -8,7 +8,7 @@
 
 import UIKit
 
-class : UIButton {
+class PlayPauseButton: UIButton {
 
     override func awakeFromNib() {
         self.backgroundColor = UIColor(hexString: "#0582CA", alpha: 1.0)
