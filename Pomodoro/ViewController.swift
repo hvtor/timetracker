@@ -36,6 +36,14 @@ class ViewController: UIViewController {
  
     }()
     
+    let actionButtonsContainerView: UIView = {
+        let abc = UIView()
+        abc.backgroundColor = UIColor.cyan
+        
+        abc.translatesAutoresizingMaskIntoConstraints = false
+        return abc
+    }()
+    
     let timerLabel : UILabel = {
         let tl = UILabel()
             let font = UIFont(name: "Avenir-Heavy", size: 104.0)
@@ -89,12 +97,14 @@ class ViewController: UIViewController {
         labelsContainerView.addSubview(timerLabel)
         labelsContainerView.addSubview(taskLabel)
         buttonsContainerView.addSubview(playButtonContainerView)
+        playButtonContainerView.addSubview(actionButtonsContainerView)
         
         // Setup of View Constraints
         setupLabelsContainerView()
         setupButtonsContainerView()
         setupPlayContainer()
         setupLabelsInsideLabelsContainerView()
+        setupActionButtonsContainer()
         timerLabel.text = "33:09"
         taskLabel.text = "Create an interface for TimeTracker App. Create two containers first. Then two labels with 0.5 multipliers. Then create your buttons in the container below."
     }
@@ -136,7 +146,15 @@ class ViewController: UIViewController {
         playButtonContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         playButtonContainerView.topAnchor.constraint(equalTo: buttonsContainerView.topAnchor).isActive = true
         playButtonContainerView.widthAnchor.constraint(equalTo: buttonsContainerView.widthAnchor).isActive = true
-        playButtonContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25).isActive = true
+        playButtonContainerView.heightAnchor.constraint(equalTo: buttonsContainerView.heightAnchor, multiplier: 0.60).isActive = true
+        
+    }
+    
+    func setupActionButtonsContainer() {
+        actionButtonsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        actionButtonsContainerView.topAnchor.constraint(equalTo: playButtonContainerView.bottomAnchor).isActive = true
+        actionButtonsContainerView.widthAnchor.constraint(equalTo: buttonsContainerView.widthAnchor).isActive = true
+        actionButtonsContainerView.heightAnchor.constraint(equalTo: buttonsContainerView.heightAnchor, multiplier: 0.40).isActive = true
         
     }
 
