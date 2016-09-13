@@ -11,7 +11,11 @@ import UIKit
 class ViewController: UIViewController {
 
     
-    let logTimeButton = 
+    let logTimeButton: ActionButton = {
+        let ltb = ActionButton()
+        
+        return ltb
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
