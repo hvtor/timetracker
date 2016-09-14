@@ -11,6 +11,9 @@ import QuartzCore
 
 class ViewController: UIViewController {
 
+    var timer = 0
+    var isRunning = false
+    
     let labelsContainerView: UIView = {
         let lcv = UIView()
         lcv.backgroundColor = UIColor.clear
@@ -66,6 +69,7 @@ class ViewController: UIViewController {
         tbc.backgroundColor = UIColor.clear
         
         tbc.translatesAutoresizingMaskIntoConstraints = false
+        
         return tbc
     }()
     
@@ -80,8 +84,9 @@ class ViewController: UIViewController {
     
     let timerLabel : UILabel = {
         let tl = UILabel()
-            let font = UIFont(name: "Avenir-Book", size: 84.0)
+            let font = UIFont(name: "HelveticaNeue", size: 70.0)
             tl.textColor = UIColor(hexString: "#FAFAFA", alpha: 1.0)
+        
             tl.font = font
             tl.textAlignment = NSTextAlignment.center
             tl.translatesAutoresizingMaskIntoConstraints = false
@@ -154,8 +159,15 @@ class ViewController: UIViewController {
             setupLogTimeContainer()
                 setupLogTimeButton()
         
-        timerLabel.text = "00:00"
+        timerLabel.text = "00:00.33"
         taskLabel.text = "Create an interface for TimeTracker App. Create two containers first. Then two labels with 0.5 multipliers. Then create your buttons in the container below."
+        
+        tasksButton.addTarget(self, action: #selector(tasksButtonPressed), for: .touchUpInside)
+        
+        logButton.addTarget(self, action: #selector(logButtonPressed), for: .touchUpInside)
+        
+        playPauseButton.addTarget(self, action: #selector(playPauseButtonPressed), for: .touchUpInside)
+        
     }
     
     func setupLabelsContainerView() {
@@ -239,6 +251,30 @@ class ViewController: UIViewController {
         logButton.centerYAnchor.constraint(equalTo: logButtonContainerView.centerYAnchor).isActive = true
         logButton.widthAnchor.constraint(equalTo: logButtonContainerView.heightAnchor, multiplier: 0.5).isActive = true
         logButton.heightAnchor.constraint(equalTo: logButtonContainerView.heightAnchor, multiplier: 0.5).isActive = true
+    }
+    
+    func tasksButtonPressed(sender: UIButton) {
+        print("tasks btn pressed")
+    }
+    
+    func logButtonPressed(sender: UIButton) {
+        print("log time btn pressed")
+    }
+    
+    func playPauseButtonPressed(sender: UIButton) {
+        increaseTimer()
+        
+    }
+    
+    func increaseTimer() {
+        
+        if (isRunning == false) {
+            timer += 1
+            timerLabel.text = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .medium)
+            isRunning = true
+        }
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
