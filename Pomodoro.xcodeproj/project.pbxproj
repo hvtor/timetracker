@@ -16,6 +16,7 @@
 		E9C945BA1D885A370068DC0F /* PomodoroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C945B91D885A370068DC0F /* PomodoroUITests.swift */; };
 		E9C945C81D88650D0068DC0F /* PlayPauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C945C71D88650D0068DC0F /* PlayPauseButton.swift */; };
 		E9C945CA1D8875040068DC0F /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C945C91D8875040068DC0F /* ActionButton.swift */; };
+		E9F8A4B61D890FEA0039C71A /* LogTimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F8A4B51D890FEA0039C71A /* LogTimeController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		E9C945BB1D885A370068DC0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9C945C71D88650D0068DC0F /* PlayPauseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayPauseButton.swift; sourceTree = "<group>"; };
 		E9C945C91D8875040068DC0F /* ActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		E9F8A4B51D890FEA0039C71A /* LogTimeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogTimeController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			children = (
 				E9C945961D885A370068DC0F /* AppDelegate.swift */,
 				E9C945981D885A370068DC0F /* ViewController.swift */,
+				E9F8A4B51D890FEA0039C71A /* LogTimeController.swift */,
 				E9C945C71D88650D0068DC0F /* PlayPauseButton.swift */,
 				E9C945C91D8875040068DC0F /* ActionButton.swift */,
 				E9C945A01D885A370068DC0F /* Assets.xcassets */,
@@ -272,6 +275,7 @@
 				E9C945991D885A370068DC0F /* ViewController.swift in Sources */,
 				E9C945971D885A370068DC0F /* AppDelegate.swift in Sources */,
 				E9C945CA1D8875040068DC0F /* ActionButton.swift in Sources */,
+				E9F8A4B61D890FEA0039C71A /* LogTimeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +518,7 @@
 				E9C945C01D885A370068DC0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E9C945C11D885A370068DC0F /* Build configuration list for PBXNativeTarget "PomodoroTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +527,7 @@
 				E9C945C31D885A370068DC0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E9C945C41D885A370068DC0F /* Build configuration list for PBXNativeTarget "PomodoroUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +536,7 @@
 				E9C945C61D885A370068DC0F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
