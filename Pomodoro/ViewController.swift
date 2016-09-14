@@ -93,8 +93,10 @@ class ViewController: UIViewController {
         let tl = UILabel()
             let font = UIFont(name: "HelveticaNeue", size: 70.0)
             tl.textColor = UIColor(hexString: "#FAFAFA", alpha: 1.0)
-        
+            tl.backgroundColor = UIColor(hexString: "#123", alpha: 1.0)
+            tl.layer.cornerRadius = 15.0
             tl.font = font
+            tl.clipsToBounds = true
             tl.textAlignment = NSTextAlignment.center
             tl.translatesAutoresizingMaskIntoConstraints = false
         return tl
@@ -183,7 +185,7 @@ class ViewController: UIViewController {
     }
     
     func setupLabelsContainerView() {
-        let topAnchorHeight = UIApplication.shared.statusBarFrame.height + 20
+        let topAnchorHeight = UIApplication.shared.statusBarFrame.height + 50
         labelsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         labelsContainerView.topAnchor.constraint(equalTo: view.topAnchor, constant:topAnchorHeight).isActive = true
         labelsContainerView.widthAnchor.constraint(equalTo:view.widthAnchor, constant:-20).isActive = true
@@ -271,6 +273,7 @@ class ViewController: UIViewController {
     
     func logButtonPressed(sender: UIButton) {
         let logTimeViewController: LogTimeController = LogTimeController()
+        
         logTimeViewController.view.backgroundColor = UIColor.clear
         logTimeViewController.modalPresentationStyle = .overCurrentContext
         self.present(logTimeViewController, animated: true, completion: nil)

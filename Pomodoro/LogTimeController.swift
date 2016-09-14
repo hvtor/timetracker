@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LogTimeController: UIViewController {
+class LogTimeController: UIViewController,UITextViewDelegate {
     
     
     let downArrow: UIButton = {
@@ -32,7 +32,7 @@ class LogTimeController: UIViewController {
     
     let inputsBackgroundView: UIView = {
         let v = UIView()
-        v.layer.cornerRadius = 0
+        v.layer.cornerRadius = 10
         v.layer.masksToBounds = true
         v.layer.opacity = 0.9
         v.backgroundColor = UIColor(hexString: "#123", alpha: 1.0)
@@ -42,27 +42,38 @@ class LogTimeController: UIViewController {
     
     let timerValue: UITextField = {
         let tv = UITextField()
-        
+        tv.textColor = UIColor.lightGray
         tv.backgroundColor = UIColor(hexString: "#051923", alpha: 1.0)
         tv.placeholder = ""
+        tv.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0)
         tv.translatesAutoresizingMaskIntoConstraints = false
         return tv
     }()
     
+//    let projectLabel: UILabel = {
+//        let pl = UILabel()
+//        pl.textColor = UIColor.lightGray
+//        pl.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
+//        return pl
+//    }()
+    
     let projectName: UITextField = {
         let pn = UITextField()
+        pn.text = "Enter Project Name"
+        pn.textColor = UIColor.lightGray
         pn.backgroundColor = UIColor(hexString: "#051923", alpha: 1.0)
-        
+        pn.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0)
         pn.translatesAutoresizingMaskIntoConstraints = false
+        pn.clearsOnBeginEditing = true
         return pn
     }()
     
     
     func setupInputsContainerView() {
         inputsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        inputsContainerView.topAnchor.constraint(equalTo: view.topAnchor, constant:160).isActive = true
-        inputsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -20).isActive = true
-        inputsContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, constant:180).isActive = true
+        inputsContainerView.topAnchor.constraint(equalTo: view.topAnchor, constant:240).isActive = true
+        inputsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -40).isActive = true
+        inputsContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, constant:-220).isActive = true
     }
     
     func setupDownArrow() {
@@ -90,7 +101,8 @@ class LogTimeController: UIViewController {
         
         projectName.widthAnchor.constraint(equalTo: inputsBackgroundView.widthAnchor).isActive = true
         
-    
+        
+        
         timerValue.centerXAnchor.constraint(equalTo: inputsBackgroundView.centerXAnchor).isActive = true
         timerValue.topAnchor.constraint(equalTo: projectName.bottomAnchor, constant: 0).isActive = true
         timerValue.widthAnchor.constraint(equalTo: inputsBackgroundView.widthAnchor).isActive = true
@@ -119,11 +131,20 @@ class LogTimeController: UIViewController {
         
         // Do any additional setup after loading the view.
         downArrow.addTarget(self, action: #selector(dismissViewController), for: .touchUpInside)
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        inputsContainerView.isScrollEnabled = true
+        var width = inputsContainerView.frame.size.width
+        var height = CGFloat(3200.0)
+        inputsContainerView.contentSize = CGSize(width:width, height:height)
     }
     
     func dismissViewController() {
         
         self.dismiss(animated: true, completion: nil)
+        
     }
 
     override func didReceiveMemoryWarning() {
