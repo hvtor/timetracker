@@ -11,8 +11,13 @@ import QuartzCore
 
 class ViewController: UIViewController {
 
-    var timer = 0
-    var isRunning = false
+    var timer = Timer()
+    
+    var fractions: Int = 0
+    var seconds: Int = 0
+    var minutes: Int = 0
+    var hours: Int = 0
+    var timerRunning = false
     
     let labelsContainerView: UIView = {
         let lcv = UIView()
@@ -262,17 +267,24 @@ class ViewController: UIViewController {
     }
     
     func playPauseButtonPressed(sender: UIButton) {
-        increaseTimer()
+
+        if (timerRunning == false) {
+            timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+            
+            playPauseButton.setImage(UIImage(named:"pause.png"), for: .normal)
+            timerRunning = true
+
+        } else {
+            timer.invalidate()
+            timerRunning = false
+            playPauseButton.setImage(UIImage(named:"play.png"), for: .normal)
+        }
+
         
     }
     
-    func increaseTimer() {
+    func updateTimer() {
         
-        if (isRunning == false) {
-            timer += 1
-            timerLabel.text = DateFormatter.localizedString(from: Date(), dateStyle: .none, timeStyle: .medium)
-            isRunning = true
-        }
         
         
     }
