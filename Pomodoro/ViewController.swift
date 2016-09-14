@@ -280,12 +280,14 @@ class ViewController: UIViewController {
             timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
             
             playPauseButton.setImage(UIImage(named:"pause.png"), for: .normal)
+            
             timerRunning = true
 
         } else {
             timer.invalidate()
             timerRunning = false
             playPauseButton.setImage(UIImage(named:"play.png"), for: .normal)
+            
         }
     }
     
