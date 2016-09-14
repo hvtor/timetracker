@@ -12,11 +12,14 @@ import QuartzCore
 class ViewController: UIViewController {
 
     var timer = Timer()
-    
-    var fractions: Int = 0
+
     var seconds: Int = 0
     var minutes: Int = 0
     var hours: Int = 0
+    var days: Int = 0
+    
+    var timeString = String()
+    
     var timerRunning = false
     
     let labelsContainerView: UIView = {
@@ -274,7 +277,7 @@ class ViewController: UIViewController {
     func playPauseButtonPressed(sender: UIButton) {
 
         if (timerRunning == false) {
-            timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
             
             playPauseButton.setImage(UIImage(named:"pause.png"), for: .normal)
             timerRunning = true
@@ -300,8 +303,28 @@ class ViewController: UIViewController {
     }
     
     func updateTimer() {
+        seconds += 1
+        if seconds == 60 {
+            minutes += 1
+            seconds = 0
+        }
+        if minutes == 60 {
+            hours += 1
+            minutes = 0
+        }
 
-
+        if hours == 24 {
+            days += 1
+            hours = 0
+            
+        }
+        
+        let secondsVal = seconds > 9 ? "\(seconds)" : "0\(seconds)"
+        let minutesVal = minutes > 9 ? "\(minutes)" : "0\(minutes)"
+        let hoursVal   = hours > 9 ? "\(hours)" : "0\(hours)"
+        
+        timeString = "\(hoursVal):\(minutesVal):\(secondsVal)"
+        timerLabel.text = timeString
     }
     
     override func didReceiveMemoryWarning() {
