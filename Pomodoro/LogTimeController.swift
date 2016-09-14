@@ -92,6 +92,12 @@ class LogTimeController: UIViewController {
         setupDownArrow()
         
         // Do any additional setup after loading the view.
+        downArrow.addTarget(self, action: #selector(dismissViewController), for: .touchUpInside)
+    }
+    
+    func dismissViewController() {
+        
+        self.dismiss(animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
