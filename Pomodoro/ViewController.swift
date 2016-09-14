@@ -142,7 +142,7 @@ class ViewController: UIViewController {
         view.addSubview(labelsContainerView)
         view.addSubview(buttonsContainerView)
         labelsContainerView.addSubview(timerLabel)
-        labelsContainerView.addSubview(taskLabel)
+//        labelsContainerView.addSubview(taskLabel)
         buttonsContainerView.addSubview(playButtonContainerView)
         playButtonContainerView.addSubview(playPauseButton)
         buttonsContainerView.addSubview(actionButtonsContainerView)
@@ -167,7 +167,7 @@ class ViewController: UIViewController {
             setupLogTimeContainer()
                 setupLogTimeButton()
         
-        timerLabel.text = "00:00.33"
+        timerLabel.text = "00:00:00"
         taskLabel.text = "Create an interface for TimeTracker App. Create two containers first. Then two labels with 0.5 multipliers. Then create your buttons in the container below."
         
         tasksButton.addTarget(self, action: #selector(tasksButtonPressed), for: .touchUpInside)
@@ -188,7 +188,7 @@ class ViewController: UIViewController {
         labelsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         labelsContainerView.topAnchor.constraint(equalTo: view.topAnchor, constant:topAnchorHeight).isActive = true
         labelsContainerView.widthAnchor.constraint(equalTo:view.widthAnchor, constant:-20).isActive = true
-        labelsContainerView.heightAnchor.constraint(equalTo:view.widthAnchor, multiplier: 0.60).isActive = true
+        labelsContainerView.heightAnchor.constraint(equalTo:view.widthAnchor, multiplier: 0.40).isActive = true
     }
     
     func setupLabelsInsideLabelsContainerView() {
@@ -200,10 +200,10 @@ class ViewController: UIViewController {
         timerLabel.heightAnchor.constraint(equalTo: labelsContainerView.widthAnchor, multiplier: 0.45).isActive = true
         
         // Task description label constraints
-        taskLabel.centerXAnchor.constraint(equalTo: labelsContainerView.centerXAnchor).isActive = true
-        taskLabel.topAnchor.constraint(equalTo: timerLabel.bottomAnchor, constant:-60).isActive = true
-        taskLabel.widthAnchor.constraint(equalTo: labelsContainerView.widthAnchor, constant: -20).isActive = true
-        taskLabel.heightAnchor.constraint(equalTo: labelsContainerView.widthAnchor, multiplier: 0.5).isActive = true
+//        taskLabel.centerXAnchor.constraint(equalTo: labelsContainerView.centerXAnchor).isActive = true
+//        taskLabel.topAnchor.constraint(equalTo: timerLabel.bottomAnchor, constant:-60).isActive = true
+//        taskLabel.widthAnchor.constraint(equalTo: labelsContainerView.widthAnchor, constant: -20).isActive = true
+//        taskLabel.heightAnchor.constraint(equalTo: labelsContainerView.widthAnchor, multiplier: 0.5).isActive = true
         
     }
     
@@ -271,7 +271,10 @@ class ViewController: UIViewController {
     }
     
     func logButtonPressed(sender: UIButton) {
-        print("log time btn pressed")
+        let logTimeViewController: LogTimeController = LogTimeController()
+        logTimeViewController.view.backgroundColor = UIColor.clear
+        logTimeViewController.modalPresentationStyle = .overCurrentContext
+        self.present(logTimeViewController, animated: true, completion: nil)
     }
     
     func playPauseButtonPressed(sender: UIButton) {
