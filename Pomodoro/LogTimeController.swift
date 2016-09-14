@@ -40,14 +40,15 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         return v
     }()
     
-    let timerValue: UITextField = {
-        let tv = UITextField()
-        tv.textColor = UIColor.lightGray
-        tv.backgroundColor = UIColor(hexString: "#051923", alpha: 1.0)
-        tv.placeholder = ""
-        tv.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0)
-        tv.translatesAutoresizingMaskIntoConstraints = false
-        return tv
+    let taskDescription: UITextField = {
+        let td = UITextField()
+        td.textColor = UIColor.lightGray
+        td.attributedPlaceholder = NSAttributedString(string: "Task Description", attributes: [NSForegroundColorAttributeName: UIColor(hexString:"#808080", alpha:1.0)])
+        td.backgroundColor = UIColor(hexString: "#051923", alpha: 1.0)
+        
+        td.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0)
+        td.translatesAutoresizingMaskIntoConstraints = false
+        return td
     }()
     
 //    let projectLabel: UILabel = {
@@ -59,12 +60,16 @@ class LogTimeController: UIViewController,UITextViewDelegate {
     
     let projectName: UITextField = {
         let pn = UITextField()
-        pn.text = "Enter Project Name"
-        pn.textColor = UIColor.lightGray
+        pn.attributedPlaceholder = NSAttributedString(string: "Enter Project Name", attributes: [NSForegroundColorAttributeName: UIColor(hexString:"#808080", alpha:1.0)])
+        pn.textColor = UIColor.init(hexString: "#FAFAFA", alpha: 1.0)
+        pn.font = UIFont(name: "Helvetica", size: 24.0)
         pn.backgroundColor = UIColor(hexString: "#051923", alpha: 1.0)
         pn.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0)
         pn.translatesAutoresizingMaskIntoConstraints = false
-        pn.clearsOnBeginEditing = true
+        
+        pn.autocorrectionType = .no
+        pn.autocapitalizationType = .none
+        pn.spellCheckingType = .no
         return pn
     }()
     
@@ -88,10 +93,9 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         inputsBackgroundView.centerXAnchor.constraint(equalTo: inputsContainerView.centerXAnchor).isActive = true
         inputsBackgroundView.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         inputsBackgroundView.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor).isActive = true
-        
-    
     }
 
+    
     
     func setupTextFieldsContainer() {
         projectName.centerXAnchor.constraint(equalTo: inputsContainerView.centerXAnchor).isActive = true
@@ -103,14 +107,12 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         
         
         
-        timerValue.centerXAnchor.constraint(equalTo: inputsBackgroundView.centerXAnchor).isActive = true
-        timerValue.topAnchor.constraint(equalTo: projectName.bottomAnchor, constant: 0).isActive = true
-        timerValue.widthAnchor.constraint(equalTo: inputsBackgroundView.widthAnchor).isActive = true
-        timerValue.heightAnchor.constraint(equalToConstant:50).isActive = true
+        taskDescription.centerXAnchor.constraint(equalTo: inputsBackgroundView.centerXAnchor).isActive = true
+        taskDescription.topAnchor.constraint(equalTo: projectName.bottomAnchor, constant: 0).isActive = true
+        taskDescription.widthAnchor.constraint(equalTo: inputsBackgroundView.widthAnchor).isActive = true
+        taskDescription.heightAnchor.constraint(equalToConstant:50).isActive = true
         
     }
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,14 +121,11 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         inputsContainerView.addSubview(inputsBackgroundView)
         inputsContainerView.addSubview(downArrow)
         inputsBackgroundView.addSubview(projectName)
-        inputsBackgroundView.addSubview(timerValue)
+        inputsBackgroundView.addSubview(taskDescription)
         setupDownArrow()
         setupInputsContainerView()
         
         setupInputsBackgroundView()
-        
-        
-        
         setupTextFieldsContainer()
         
         // Do any additional setup after loading the view.
@@ -137,7 +136,7 @@ class LogTimeController: UIViewController,UITextViewDelegate {
     override func viewDidLayoutSubviews() {
         inputsContainerView.isScrollEnabled = true
         var width = inputsContainerView.frame.size.width
-        var height = CGFloat(3200.0)
+        var height = CGFloat(600.0)
         inputsContainerView.contentSize = CGSize(width:width, height:height)
     }
     
