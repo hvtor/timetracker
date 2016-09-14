@@ -49,12 +49,12 @@ class ViewController: UIViewController {
         let playBtn = PlayPauseButton()
         
         playBtn.layer.backgroundColor = UIColor(hexString: "#0082c7", alpha: 1.0).cgColor
-        playBtn.layer.borderWidth = 12.0
+        playBtn.layer.borderWidth = 4.0
         playBtn.layer.borderColor = UIColor(hexString: "#041922", alpha: 1.0).cgColor
         
         playBtn.translatesAutoresizingMaskIntoConstraints = false
         playBtn.clipsToBounds = true
-        
+       
         playBtn.setImage(UIImage(named:"play.png"), for: .normal)
 
         
@@ -173,6 +173,11 @@ class ViewController: UIViewController {
         
         playPauseButton.addTarget(self, action: #selector(playPauseButtonPressed), for: .touchUpInside)
         
+        playPauseButton.addTarget(self, action: #selector(touchedDown), for: .touchDown)
+        playPauseButton.addTarget(self, action: #selector(touchUp), for: .touchUpInside)
+        playPauseButton.addTarget(self, action: #selector(touchUp), for: .touchUpOutside)
+        
+        
     }
     
     func setupLabelsContainerView() {
@@ -279,14 +284,24 @@ class ViewController: UIViewController {
             timerRunning = false
             playPauseButton.setImage(UIImage(named:"play.png"), for: .normal)
         }
-
+    }
+    
+    func touchedDown() {
+        playPauseButton.layer.backgroundColor = UIColor(hexString: "#0C64AB", alpha: 1.0).cgColor
+        playPauseButton.layer.borderWidth = 6.0
+        playPauseButton.layer.borderColor = UIColor(hexString: "#041922", alpha: 1.0).cgColor
         
     }
     
+    func touchUp() {
+        playPauseButton.layer.backgroundColor = UIColor(hexString: "#0082c7", alpha: 1.0).cgColor
+        playPauseButton.layer.borderWidth = 4.0
+        playPauseButton.layer.borderColor = UIColor(hexString: "#041922", alpha: 1.0).cgColor
+    }
+    
     func updateTimer() {
-        
-        
-        
+
+
     }
     
     override func didReceiveMemoryWarning() {
