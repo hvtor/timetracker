@@ -37,9 +37,25 @@ class ViewController: UIViewController {
  
     }()
     
+    let playPauseButton: PlayPauseButton = {
+        let playBtn = PlayPauseButton()
+        
+        playBtn.layer.backgroundColor = UIColor(hexString: "#0082c7", alpha: 1.0).cgColor
+        playBtn.layer.borderWidth = 12.0
+        playBtn.layer.borderColor = UIColor(hexString: "#041922", alpha: 1.0).cgColor
+        
+        playBtn.translatesAutoresizingMaskIntoConstraints = false
+        playBtn.clipsToBounds = true
+        
+        playBtn.setImage(UIImage(named:"play.png"), for: .normal)
+
+        
+        return playBtn
+    }()
+    
     let actionButtonsContainerView: UIView = {
         let abc = UIView()
-        abc.backgroundColor = UIColor.cyan
+        abc.backgroundColor = UIColor.clear
         
         abc.translatesAutoresizingMaskIntoConstraints = false
         return abc
@@ -53,17 +69,9 @@ class ViewController: UIViewController {
         return tbc
     }()
     
-    let tasksListContainerView: UIView = {
-        let tlc = UIView()
-        tlc.backgroundColor = UIColor.cyan
-        
-        tlc.translatesAutoresizingMaskIntoConstraints = false
-        return tlc
-    }()
-    
     let logButtonContainerView: UIView = {
         let lbc = UIView()
-        lbc.backgroundColor = UIColor.brown
+        lbc.backgroundColor = UIColor.clear
         
         lbc.translatesAutoresizingMaskIntoConstraints = false
         
@@ -82,7 +90,7 @@ class ViewController: UIViewController {
     
     let taskLabel : UILabel = {
         let tl = UILabel()
-            let font = UIFont(name: "HelveticaNeue", size: 28.0)
+            let font = UIFont(name: "HelveticaNeue", size: 20.0)
             tl.textColor = UIColor(hexString: "#FAFAFA", alpha: 1.0)
             tl.font = font
             tl.textAlignment = NSTextAlignment.center
@@ -93,37 +101,31 @@ class ViewController: UIViewController {
         
     }()
     
-    let tasksListButton: ActionButton = {
+    let tasksButton: ActionButton = {
         let tasksBtn = ActionButton()
-        
+        tasksBtn.backgroundColor = UIColor.white
+        tasksBtn.layer.borderColor = UIColor.white.cgColor
+        tasksBtn.layer.borderWidth = 0
+        tasksBtn.setImage(UIImage(named:"tasks.png"), for: .normal)
+        tasksBtn.translatesAutoresizingMaskIntoConstraints = false
         return tasksBtn
     }()
     
-    let logTimeButton: ActionButton = {
+    let logButton: ActionButton = {
         let logBtn = ActionButton()
+        logBtn.backgroundColor = UIColor.white
+        logBtn.layer.borderColor = UIColor.white.cgColor
+        logBtn.layer.borderWidth = 0
+        logBtn.setImage(UIImage(named:"log.png"), for: .normal)
         logBtn.translatesAutoresizingMaskIntoConstraints = false
-
         return logBtn
-    }()
-    
-    let playPauseButton: PlayPauseButton = {
-        let playBtn = PlayPauseButton()
-        
-        playBtn.layer.backgroundColor = UIColor(hexString: "#0082c7", alpha: 1.0).cgColor
-        playBtn.layer.borderWidth = 12.0
-        playBtn.layer.borderColor = UIColor(hexString: "#041922", alpha: 1.0).cgColor
-        
-        playBtn.translatesAutoresizingMaskIntoConstraints = false
-        playBtn.clipsToBounds = true
-
-        return playBtn
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
      
         view.backgroundColor = UIColor(hexString: "#003554", alpha: 1.0)
-        // Add Views to subview
+        // Adding Views to subviews
         view.addSubview(labelsContainerView)
         view.addSubview(buttonsContainerView)
         labelsContainerView.addSubview(timerLabel)
@@ -132,17 +134,25 @@ class ViewController: UIViewController {
         playButtonContainerView.addSubview(playPauseButton)
         buttonsContainerView.addSubview(actionButtonsContainerView)
         
-        // Setup of View Constraints
-        setupLabelsContainerView()
-        setupLabelsInsideLabelsContainerView()
+        actionButtonsContainerView.addSubview(tasksButtonContainerView)
+        actionButtonsContainerView.addSubview(logButtonContainerView)
         
+        tasksButtonContainerView.addSubview(tasksButton)
+        logButtonContainerView.addSubview(logButton)
+        
+        // Setup of LabelsContainer
+        setupLabelsContainerView()
+            setupLabelsInsideLabelsContainerView()
+        // Setup of ButtonsContainer
         setupButtonsContainerView()
             setupPlayContainer()
             setupPlayPauseButton()
-        
-        
-            setupActionButtonsContainer()
-        
+        // Setup of Buttons within Container
+        setupActionButtonsContainer()
+            setupTasksButtonContainer()
+                setupTasksButton()
+            setupLogTimeContainer()
+                setupLogTimeButton()
         
         timerLabel.text = "00:00"
         taskLabel.text = "Create an interface for TimeTracker App. Create two containers first. Then two labels with 0.5 multipliers. Then create your buttons in the container below."
@@ -199,18 +209,36 @@ class ViewController: UIViewController {
         actionButtonsContainerView.centerXAnchor.constraint(equalTo: buttonsContainerView.centerXAnchor).isActive = true
         actionButtonsContainerView.topAnchor.constraint(equalTo: playButtonContainerView.bottomAnchor).isActive = true
         actionButtonsContainerView.widthAnchor.constraint(equalTo: buttonsContainerView.widthAnchor).isActive = true
-        actionButtonsContainerView.heightAnchor.constraint(equalTo: buttonsContainerView.widthAnchor, multiplier: 0.35).isActive = true
+        actionButtonsContainerView.heightAnchor.constraint(equalTo: buttonsContainerView.heightAnchor, multiplier: 0.40).isActive = true
     }
     
-    func setupTasksListContainer() {
+    func setupTasksButtonContainer() {
         tasksButtonContainerView.leftAnchor.constraint(equalTo: actionButtonsContainerView.leftAnchor).isActive = true
         tasksButtonContainerView.topAnchor.constraint(equalTo: actionButtonsContainerView.topAnchor).isActive = true
         tasksButtonContainerView.widthAnchor.constraint(equalTo: actionButtonsContainerView.widthAnchor, multiplier: 0.5).isActive = true
-        tasksButtonContainerView.heightAnchor.constraint(equalTo: actionButtonsContainerView.heightAnchor, multiplier: 0.5).isActive = true
+        tasksButtonContainerView.heightAnchor.constraint(equalTo: actionButtonsContainerView.heightAnchor, multiplier: 1).isActive = true
     }
     
-    func logTimeContainer() {
+    func setupTasksButton() {
     
+        tasksButton.centerXAnchor.constraint(equalTo: tasksButtonContainerView.centerXAnchor).isActive = true
+        tasksButton.centerYAnchor.constraint(equalTo: tasksButtonContainerView.centerYAnchor).isActive = true
+        tasksButton.widthAnchor.constraint(equalTo: tasksButtonContainerView.heightAnchor, multiplier: 0.5).isActive = true
+        tasksButton.heightAnchor.constraint(equalTo: tasksButtonContainerView.heightAnchor, multiplier: 0.5).isActive = true
+    }
+    
+    func setupLogTimeContainer() {
+        logButtonContainerView.rightAnchor.constraint(equalTo: actionButtonsContainerView.rightAnchor).isActive = true
+        logButtonContainerView.topAnchor.constraint(equalTo: actionButtonsContainerView.topAnchor).isActive = true
+        logButtonContainerView.widthAnchor.constraint(equalTo: actionButtonsContainerView.widthAnchor, multiplier: 0.5).isActive = true
+        logButtonContainerView.heightAnchor.constraint(equalTo: actionButtonsContainerView.heightAnchor, multiplier: 1).isActive = true
+    }
+    
+    func setupLogTimeButton() {
+        logButton.centerXAnchor.constraint(equalTo: logButtonContainerView.centerXAnchor).isActive = true
+        logButton.centerYAnchor.constraint(equalTo: logButtonContainerView.centerYAnchor).isActive = true
+        logButton.widthAnchor.constraint(equalTo: logButtonContainerView.heightAnchor, multiplier: 0.5).isActive = true
+        logButton.heightAnchor.constraint(equalTo: logButtonContainerView.heightAnchor, multiplier: 0.5).isActive = true
     }
     
     override func didReceiveMemoryWarning() {
