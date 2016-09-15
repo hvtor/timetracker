@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class LogTimeController: UIViewController,UITextViewDelegate {
     
@@ -46,6 +47,10 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         td.attributedPlaceholder = NSAttributedString(string: "Task Description", attributes: [NSForegroundColorAttributeName: UIColor(hexString:"#808080", alpha:1.0)])
         td.backgroundColor = UIColor(hexString: "#051923", alpha: 1.0)
         
+        td.autocorrectionType = .no
+        td.autocapitalizationType = .none
+        td.spellCheckingType = .no
+        
         td.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0)
         td.translatesAutoresizingMaskIntoConstraints = false
         return td
@@ -56,10 +61,15 @@ class LogTimeController: UIViewController,UITextViewDelegate {
     let taskRate: UITextField = {
         let tr = UITextField()
         tr.textColor = UIColor.lightGray
-        tr.attributedPlaceholder = NSAttributedString(string: "$0.00", attributes: [NSForegroundColorAttributeName: UIColor(hexString:"#808080", alpha:1.0)])
+        tr.attributedPlaceholder = NSAttributedString(string: "$/hour", attributes: [NSForegroundColorAttributeName: UIColor(hexString:"#808080", alpha:1.0)])
         tr.backgroundColor = UIColor(hexString: "#051923", alpha: 1.0)
         
         tr.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0)
+        
+        tr.autocorrectionType = .no
+        tr.autocapitalizationType = .none
+        tr.spellCheckingType = .no
+        
         tr.translatesAutoresizingMaskIntoConstraints = false
         return tr
     }()
@@ -84,7 +94,7 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         inputsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         inputsContainerView.topAnchor.constraint(equalTo: view.topAnchor, constant:240).isActive = true
         inputsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -40).isActive = true
-        inputsContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, constant:-220).isActive = true
+        inputsContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, constant:-260).isActive = true
     }
     
     func setupDownArrow() {
@@ -95,14 +105,12 @@ class LogTimeController: UIViewController,UITextViewDelegate {
     }
     
     func setupInputsBackgroundView() {
-        inputsBackgroundView.topAnchor.constraint(equalTo: downArrow.bottomAnchor, constant: 40).isActive = true
+        inputsBackgroundView.topAnchor.constraint(equalTo: downArrow.bottomAnchor, constant: 0).isActive = true
         inputsBackgroundView.centerXAnchor.constraint(equalTo: inputsContainerView.centerXAnchor).isActive = true
         inputsBackgroundView.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         inputsBackgroundView.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor).isActive = true
     }
-
-    
-    
+ 
     func setupTextFieldsContainer() {
         projectName.centerXAnchor.constraint(equalTo: inputsContainerView.centerXAnchor).isActive = true
         projectName.topAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: 100).isActive = true
@@ -120,7 +128,6 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         taskRate.topAnchor.constraint(equalTo: taskDescription.bottomAnchor, constant: 0).isActive = true
         taskRate.widthAnchor.constraint(equalTo: inputsBackgroundView.widthAnchor).isActive = true
         taskRate.heightAnchor.constraint(equalToConstant:50).isActive = true
-
     }
 
     override func viewDidLoad() {
