@@ -197,7 +197,7 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         
         // Do any additional setup after loading the view.
         downArrow.addTarget(self, action: #selector(dismissViewController), for: .touchUpInside)
-        
+        saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
     }
     
     override func viewDidLayoutSubviews() {
@@ -218,19 +218,29 @@ class LogTimeController: UIViewController,UITextViewDelegate {
     func saveButtonPressed() {
         let entity = NSEntityDescription.entity(forEntityName: "Project", in: self.managedObjectContext)
         
-        let project = NSManagedObject(entity: entity!, insertInto: self.managedObjectContext)
-        project.setValue(projectName.text!, forKey: "projectName")
-        project.setValue(taskRate.text!, forKey: "taskRate")
-        project.setValue(taskDescription.text!, forKey: "taskDescription")
-        project.setValue(clientName.text!, forKey: "client")
+        let project = NSEntityDescription.insertNewObject(forEntityName: "Project", into: managedObjectContext) as! Project
+        
+        project.projectName = projectName.text!
+        project.taskRate = decimalWithString(string: taskRate.text!)
+        project.taskDescription = taskDescription.text!
+        project.client = clientName.text!
+        
+        
         
         do {
             try managedObjectContext.save()
         }catch {
             fatalError("Error in storing to Core Data")
-        }        
+            print("Error in storing to Core Data")
+        }
     }
 
+    func decimalWithString(string: String) -> NSDecimalNumber {
+        let formatter = NumberFormatter()
+        formatter.generatesDecimalNumbers = true
+        return formatter.number(from: string) as? NSDecimalNumber ?? 0
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

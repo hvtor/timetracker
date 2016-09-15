@@ -18,7 +18,7 @@ extension Client {
     @NSManaged public var name: String?
     @NSManaged public var email: String?
     @NSManaged public var companyName: String?
-    @NSManaged public var project: NSSet?
+    @NSManaged public var project: Project?
 
 }
 

@@ -20,7 +20,7 @@ extension Project {
     @NSManaged public var endDate: NSDate?
     @NSManaged public var taskRate: NSDecimalNumber?
     @NSManaged public var taskDescription: String?
-    @NSManaged public var client: Client?
-    @NSManaged public var worker: Worker?
+    @NSManaged public var client: String?
+    @NSManaged public var worker: String?
 
 }
