@@ -11,6 +11,8 @@ import CoreData
 
 class LogTimeController: UIViewController,UITextViewDelegate {
     
+    var project = [NSManagedObject]()
+    var managedObjectContext : NSManagedObjectContext!
     
     let downArrow: UIButton = {
         let da = UIButton()
@@ -89,6 +91,18 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         return pn
     }()
     
+    let saveButton: UIButton = {
+    
+        let save = UIButton()
+        save.layer.cornerRadius = 5.0
+        save.alpha = 1.0
+        save.setTitle("Save Project", for: .normal)
+        save.backgroundColor = UIColor(hexString: "#006494", alpha: 1.0)
+        
+        save.translatesAutoresizingMaskIntoConstraints = false
+        
+        return save
+    }()
     
     func setupInputsContainerView() {
         inputsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -111,6 +125,8 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         inputsBackgroundView.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor).isActive = true
     }
  
+    
+    
     func setupTextFieldsContainer() {
         projectName.centerXAnchor.constraint(equalTo: inputsContainerView.centerXAnchor).isActive = true
         projectName.topAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: 100).isActive = true
@@ -128,17 +144,27 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         taskRate.topAnchor.constraint(equalTo: taskDescription.bottomAnchor, constant: 0).isActive = true
         taskRate.widthAnchor.constraint(equalTo: inputsBackgroundView.widthAnchor).isActive = true
         taskRate.heightAnchor.constraint(equalToConstant:50).isActive = true
+        
+        saveButton.centerXAnchor.constraint(equalTo: inputsBackgroundView.centerXAnchor).isActive = true
+        saveButton.topAnchor.constraint(equalTo: taskRate.bottomAnchor, constant: 20).isActive = true
+        saveButton.widthAnchor.constraint(equalTo: inputsBackgroundView.widthAnchor, constant: -20).isActive = true
+        saveButton.heightAnchor.constraint(equalToConstant:50).isActive = true
+        
+
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        _ = UIApplication.shared.delegate as! AppDelegate
+        
         view.addSubview(inputsContainerView)
         inputsContainerView.addSubview(inputsBackgroundView)
         inputsContainerView.addSubview(downArrow)
         inputsBackgroundView.addSubview(projectName)
         inputsBackgroundView.addSubview(taskDescription)
         inputsBackgroundView.addSubview(taskRate)
+        inputsBackgroundView.addSubview(saveButton)
         
         setupDownArrow()
         setupInputsContainerView()

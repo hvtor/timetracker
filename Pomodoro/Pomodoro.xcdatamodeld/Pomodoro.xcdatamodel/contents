@@ -15,15 +15,16 @@
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="taskDescription" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="client" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="project" inverseEntity="Client" syncable="YES"/>
-        <relationship name="worker" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Worker" syncable="YES"/>
+        <relationship name="worker" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Worker" inverseName="project" inverseEntity="Worker" syncable="YES"/>
     </entity>
     <entity name="Worker" representedClassName=".Worker" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Project" syncable="YES"/>
+        <attribute name="workerName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="worker" inverseEntity="Project" syncable="YES"/>
     </entity>
     <elements>
         <element name="Client" positionX="-63" positionY="-18" width="128" height="120"/>
         <element name="Project" positionX="-54" positionY="18" width="128" height="165"/>
-        <element name="Worker" positionX="-36" positionY="27" width="128" height="75"/>
+        <element name="Worker" positionX="-36" positionY="27" width="128" height="90"/>
     </elements>
 </model>

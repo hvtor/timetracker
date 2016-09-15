@@ -16,6 +16,7 @@ extension Worker {
     }
 
     @NSManaged public var id: String?
+    @NSManaged public var workerName: String?
     @NSManaged public var project: Project?
 
 }
