@@ -213,6 +213,8 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         
     }
     
+    
+    
     func saveButtonPressed() {
         let entity = NSEntityDescription.entity(forEntityName: "Project", in: self.managedObjectContext)
         
@@ -220,9 +222,13 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         project.setValue(projectName.text!, forKey: "projectName")
         project.setValue(taskRate.text!, forKey: "taskRate")
         project.setValue(taskDescription.text!, forKey: "taskDescription")
-        
         project.setValue(clientName.text!, forKey: "client")
         
+        do {
+            try managedObjectContext.save()
+        }catch {
+            fatalError("Error in storing to Core Data")
+        }        
     }
 
     override func didReceiveMemoryWarning() {
