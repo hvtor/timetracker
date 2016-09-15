@@ -51,12 +51,18 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         return td
     }()
     
-//    let projectLabel: UILabel = {
-//        let pl = UILabel()
-//        pl.textColor = UIColor.lightGray
-//        pl.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 0)
-//        return pl
-//    }()
+    
+    
+    let taskRate: UITextField = {
+        let tr = UITextField()
+        tr.textColor = UIColor.lightGray
+        tr.attributedPlaceholder = NSAttributedString(string: "$0.00", attributes: [NSForegroundColorAttributeName: UIColor(hexString:"#808080", alpha:1.0)])
+        tr.backgroundColor = UIColor(hexString: "#051923", alpha: 1.0)
+        
+        tr.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0)
+        tr.translatesAutoresizingMaskIntoConstraints = false
+        return tr
+    }()
     
     let projectName: UITextField = {
         let pn = UITextField()
@@ -105,13 +111,16 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         
         projectName.widthAnchor.constraint(equalTo: inputsBackgroundView.widthAnchor).isActive = true
         
-        
-        
         taskDescription.centerXAnchor.constraint(equalTo: inputsBackgroundView.centerXAnchor).isActive = true
         taskDescription.topAnchor.constraint(equalTo: projectName.bottomAnchor, constant: 0).isActive = true
         taskDescription.widthAnchor.constraint(equalTo: inputsBackgroundView.widthAnchor).isActive = true
         taskDescription.heightAnchor.constraint(equalToConstant:50).isActive = true
         
+        taskRate.centerXAnchor.constraint(equalTo: inputsBackgroundView.centerXAnchor).isActive = true
+        taskRate.topAnchor.constraint(equalTo: taskDescription.bottomAnchor, constant: 0).isActive = true
+        taskRate.widthAnchor.constraint(equalTo: inputsBackgroundView.widthAnchor).isActive = true
+        taskRate.heightAnchor.constraint(equalToConstant:50).isActive = true
+
     }
 
     override func viewDidLoad() {
@@ -122,6 +131,8 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         inputsContainerView.addSubview(downArrow)
         inputsBackgroundView.addSubview(projectName)
         inputsBackgroundView.addSubview(taskDescription)
+        inputsBackgroundView.addSubview(taskRate)
+        
         setupDownArrow()
         setupInputsContainerView()
         
