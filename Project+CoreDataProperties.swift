@@ -16,10 +16,9 @@ extension Project {
     }
 
     @NSManaged public var projectName: String?
-    @NSManaged public var id: String?
     @NSManaged public var startDate: NSDate?
     @NSManaged public var endDate: NSDate?
-    @NSManaged public var rate: NSDecimalNumber?
+    @NSManaged public var taskRate: NSDecimalNumber?
     @NSManaged public var taskDescription: String?
     @NSManaged public var client: Client?
     @NSManaged public var worker: Worker?

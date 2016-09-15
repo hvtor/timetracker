@@ -18,11 +18,11 @@
 		E9C945CA1D8875040068DC0F /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C945C91D8875040068DC0F /* ActionButton.swift */; };
 		E9F8A4B61D890FEA0039C71A /* LogTimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F8A4B51D890FEA0039C71A /* LogTimeController.swift */; };
 		E9F8A4BD1D8A88B90039C71A /* Project+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F8A4B71D8A88B90039C71A /* Project+CoreDataClass.swift */; };
-		E9F8A4BE1D8A88B90039C71A /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F8A4B81D8A88B90039C71A /* Project+CoreDataProperties.swift */; };
 		E9F8A4BF1D8A88B90039C71A /* Client+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F8A4B91D8A88B90039C71A /* Client+CoreDataClass.swift */; };
-		E9F8A4C01D8A88B90039C71A /* Client+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F8A4BA1D8A88B90039C71A /* Client+CoreDataProperties.swift */; };
 		E9F8A4C11D8A88B90039C71A /* Worker+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F8A4BB1D8A88B90039C71A /* Worker+CoreDataClass.swift */; };
-		E9F8A4C21D8A88B90039C71A /* Worker+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F8A4BC1D8A88B90039C71A /* Worker+CoreDataProperties.swift */; };
+		E9F8A5101D8A95A90039C71A /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F8A50D1D8A95A90039C71A /* Project+CoreDataProperties.swift */; };
+		E9F8A5111D8A95A90039C71A /* Client+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F8A50E1D8A95A90039C71A /* Client+CoreDataProperties.swift */; };
+		E9F8A5121D8A95A90039C71A /* Worker+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F8A50F1D8A95A90039C71A /* Worker+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,11 +60,11 @@
 		E9C945C91D8875040068DC0F /* ActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		E9F8A4B51D890FEA0039C71A /* LogTimeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogTimeController.swift; sourceTree = "<group>"; };
 		E9F8A4B71D8A88B90039C71A /* Project+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataClass.swift"; sourceTree = "<group>"; };
-		E9F8A4B81D8A88B90039C71A /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E9F8A4B91D8A88B90039C71A /* Client+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+CoreDataClass.swift"; sourceTree = "<group>"; };
-		E9F8A4BA1D8A88B90039C71A /* Client+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E9F8A4BB1D8A88B90039C71A /* Worker+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Worker+CoreDataClass.swift"; sourceTree = "<group>"; };
-		E9F8A4BC1D8A88B90039C71A /* Worker+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Worker+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E9F8A50D1D8A95A90039C71A /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E9F8A50E1D8A95A90039C71A /* Client+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E9F8A50F1D8A95A90039C71A /* Worker+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Worker+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,12 +150,12 @@
 		E9F8A4C31D8A88CA0039C71A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E9F8A50D1D8A95A90039C71A /* Project+CoreDataProperties.swift */,
+				E9F8A50E1D8A95A90039C71A /* Client+CoreDataProperties.swift */,
+				E9F8A50F1D8A95A90039C71A /* Worker+CoreDataProperties.swift */,
 				E9F8A4B71D8A88B90039C71A /* Project+CoreDataClass.swift */,
-				E9F8A4B81D8A88B90039C71A /* Project+CoreDataProperties.swift */,
 				E9F8A4B91D8A88B90039C71A /* Client+CoreDataClass.swift */,
-				E9F8A4BA1D8A88B90039C71A /* Client+CoreDataProperties.swift */,
 				E9F8A4BB1D8A88B90039C71A /* Worker+CoreDataClass.swift */,
-				E9F8A4BC1D8A88B90039C71A /* Worker+CoreDataProperties.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -296,15 +296,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9F8A4C01D8A88B90039C71A /* Client+CoreDataProperties.swift in Sources */,
 				E9C945C81D88650D0068DC0F /* PlayPauseButton.swift in Sources */,
 				E9C9459F1D885A370068DC0F /* Pomodoro.xcdatamodeld in Sources */,
-				E9F8A4C21D8A88B90039C71A /* Worker+CoreDataProperties.swift in Sources */,
-				E9F8A4BE1D8A88B90039C71A /* Project+CoreDataProperties.swift in Sources */,
+				E9F8A5101D8A95A90039C71A /* Project+CoreDataProperties.swift in Sources */,
+				E9F8A5121D8A95A90039C71A /* Worker+CoreDataProperties.swift in Sources */,
 				E9C945991D885A370068DC0F /* ViewController.swift in Sources */,
 				E9F8A4BD1D8A88B90039C71A /* Project+CoreDataClass.swift in Sources */,
 				E9F8A4BF1D8A88B90039C71A /* Client+CoreDataClass.swift in Sources */,
 				E9C945971D885A370068DC0F /* AppDelegate.swift in Sources */,
+				E9F8A5111D8A95A90039C71A /* Client+CoreDataProperties.swift in Sources */,
 				E9F8A4C11D8A88B90039C71A /* Worker+CoreDataClass.swift in Sources */,
 				E9C945CA1D8875040068DC0F /* ActionButton.swift in Sources */,
 				E9F8A4B61D890FEA0039C71A /* LogTimeController.swift in Sources */,

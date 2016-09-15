@@ -43,6 +43,21 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         return v
     }()
     
+    let projectName: UITextField = {
+        let pn = UITextField()
+        pn.attributedPlaceholder = NSAttributedString(string: "Enter Project Name", attributes: [NSForegroundColorAttributeName: UIColor(hexString:"#808080", alpha:1.0)])
+        pn.textColor = UIColor.init(hexString: "#FAFAFA", alpha: 1.0)
+        pn.font = UIFont(name: "Helvetica", size: 24.0)
+        pn.backgroundColor = UIColor(hexString: "#051923", alpha: 1.0)
+        pn.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0)
+        pn.translatesAutoresizingMaskIntoConstraints = false
+        
+        pn.autocorrectionType = .no
+        pn.autocapitalizationType = .none
+        pn.spellCheckingType = .no
+        return pn
+    }()
+    
     let taskDescription: UITextField = {
         let td = UITextField()
         td.textColor = UIColor.lightGray
@@ -67,7 +82,8 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         tr.backgroundColor = UIColor(hexString: "#051923", alpha: 1.0)
         
         tr.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0)
-        
+        tr.keyboardType = .numberPad
+
         tr.autocorrectionType = .no
         tr.autocapitalizationType = .none
         tr.spellCheckingType = .no
@@ -76,19 +92,22 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         return tr
     }()
     
-    let projectName: UITextField = {
-        let pn = UITextField()
-        pn.attributedPlaceholder = NSAttributedString(string: "Enter Project Name", attributes: [NSForegroundColorAttributeName: UIColor(hexString:"#808080", alpha:1.0)])
-        pn.textColor = UIColor.init(hexString: "#FAFAFA", alpha: 1.0)
-        pn.font = UIFont(name: "Helvetica", size: 24.0)
-        pn.backgroundColor = UIColor(hexString: "#051923", alpha: 1.0)
-        pn.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0)
-        pn.translatesAutoresizingMaskIntoConstraints = false
+   
+    
+    let clientName: UITextField = {
+        let client = UITextField()
         
-        pn.autocorrectionType = .no
-        pn.autocapitalizationType = .none
-        pn.spellCheckingType = .no
-        return pn
+        client.attributedPlaceholder = NSAttributedString(string: "Client Name", attributes: [NSForegroundColorAttributeName: UIColor(hexString:"#808080", alpha:1.0)])
+        client.textColor = UIColor.init(hexString: "#FAFAFA", alpha: 1.0)
+        
+        client.backgroundColor = UIColor(hexString: "#051923", alpha: 1.0)
+        client.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0)
+        client.translatesAutoresizingMaskIntoConstraints = false
+        
+        client.autocorrectionType = .no
+        client.autocapitalizationType = .none
+        client.spellCheckingType = .no
+        return client
     }()
     
     let saveButton: UIButton = {
@@ -145,8 +164,13 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         taskRate.widthAnchor.constraint(equalTo: inputsBackgroundView.widthAnchor).isActive = true
         taskRate.heightAnchor.constraint(equalToConstant:50).isActive = true
         
+        clientName.centerXAnchor.constraint(equalTo: inputsBackgroundView.centerXAnchor).isActive = true
+        clientName.topAnchor.constraint(equalTo: taskRate.bottomAnchor, constant: 0).isActive = true
+        clientName.widthAnchor.constraint(equalTo: inputsBackgroundView.widthAnchor).isActive = true
+        clientName.heightAnchor.constraint(equalToConstant:50).isActive = true
+        
         saveButton.centerXAnchor.constraint(equalTo: inputsBackgroundView.centerXAnchor).isActive = true
-        saveButton.topAnchor.constraint(equalTo: taskRate.bottomAnchor, constant: 20).isActive = true
+        saveButton.topAnchor.constraint(equalTo: clientName.bottomAnchor, constant: 20).isActive = true
         saveButton.widthAnchor.constraint(equalTo: inputsBackgroundView.widthAnchor, constant: -20).isActive = true
         saveButton.heightAnchor.constraint(equalToConstant:50).isActive = true
         
@@ -155,8 +179,6 @@ class LogTimeController: UIViewController,UITextViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        _ = UIApplication.shared.delegate as! AppDelegate
         
         view.addSubview(inputsContainerView)
         inputsContainerView.addSubview(inputsBackgroundView)
@@ -164,6 +186,7 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         inputsBackgroundView.addSubview(projectName)
         inputsBackgroundView.addSubview(taskDescription)
         inputsBackgroundView.addSubview(taskRate)
+        inputsBackgroundView.addSubview(clientName)
         inputsBackgroundView.addSubview(saveButton)
         
         setupDownArrow()
@@ -179,14 +202,26 @@ class LogTimeController: UIViewController,UITextViewDelegate {
     
     override func viewDidLayoutSubviews() {
         inputsContainerView.isScrollEnabled = true
-        var width = inputsContainerView.frame.size.width
-        var height = CGFloat(600.0)
+        let width = inputsContainerView.frame.size.width
+        let height = CGFloat(600.0)
         inputsContainerView.contentSize = CGSize(width:width, height:height)
     }
     
     func dismissViewController() {
         
         self.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    func saveButtonPressed() {
+        let entity = NSEntityDescription.entity(forEntityName: "Project", in: self.managedObjectContext)
+        
+        let project = NSManagedObject(entity: entity!, insertInto: self.managedObjectContext)
+        project.setValue(projectName.text!, forKey: "projectName")
+        project.setValue(taskRate.text!, forKey: "taskRate")
+        project.setValue(taskDescription.text!, forKey: "taskDescription")
+        
+        project.setValue(clientName.text!, forKey: "client")
         
     }
 
