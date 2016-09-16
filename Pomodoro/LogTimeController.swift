@@ -82,7 +82,7 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         tr.backgroundColor = UIColor(hexString: "#051923", alpha: 1.0)
         
         tr.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0)
-        tr.keyboardType = .numberPad
+        tr.keyboardType = .decimalPad
 
         tr.autocorrectionType = .no
         tr.autocapitalizationType = .none
@@ -102,13 +102,24 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         
         client.backgroundColor = UIColor(hexString: "#051923", alpha: 1.0)
         client.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0)
-        client.translatesAutoresizingMaskIntoConstraints = false
         
         client.autocorrectionType = .no
         client.autocapitalizationType = .none
         client.spellCheckingType = .no
+        client.translatesAutoresizingMaskIntoConstraints = false
         return client
     }()
+    
+    let workerName: UITextField = {
+        let worker = UITextField()
+        worker.textColor = UIColor(hexString: "#FAFAFA", alpha: 1.0)
+        worker.attributedPlaceholder = NSAttributedString(string: "Worker Name", attributes: [NSForegroundColorAttributeName: UIColor(hexString:"#808080", alpha:1.0)])
+        worker.backgroundColor = UIColor(hexString: "#051923", alpha: 1.0)
+        worker.layer.sublayerTransform = CATransform3DMakeTranslation(15, 0, 0)
+        worker.translatesAutoresizingMaskIntoConstraints = false
+        
+        return worker
+        }()
     
     let saveButton: UIButton = {
     
@@ -138,7 +149,7 @@ class LogTimeController: UIViewController,UITextViewDelegate {
     }
     
     func setupInputsBackgroundView() {
-        inputsBackgroundView.topAnchor.constraint(equalTo: downArrow.bottomAnchor, constant: 0).isActive = true
+        inputsBackgroundView.topAnchor.constraint(equalTo: downArrow.bottomAnchor, constant: -40).isActive = true
         inputsBackgroundView.centerXAnchor.constraint(equalTo: inputsContainerView.centerXAnchor).isActive = true
         inputsBackgroundView.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         inputsBackgroundView.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor).isActive = true
@@ -148,7 +159,7 @@ class LogTimeController: UIViewController,UITextViewDelegate {
     
     func setupTextFieldsContainer() {
         projectName.centerXAnchor.constraint(equalTo: inputsContainerView.centerXAnchor).isActive = true
-        projectName.topAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: 100).isActive = true
+        projectName.topAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: 60).isActive = true
         projectName.bottomAnchor.constraint(equalTo: inputsContainerView.bottomAnchor).isActive = true
         projectName.heightAnchor.constraint(equalToConstant:50).isActive = true
         
@@ -169,8 +180,13 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         clientName.widthAnchor.constraint(equalTo: inputsBackgroundView.widthAnchor).isActive = true
         clientName.heightAnchor.constraint(equalToConstant:50).isActive = true
         
+        workerName.centerXAnchor.constraint(equalTo: inputsBackgroundView.centerXAnchor).isActive = true
+        workerName.topAnchor.constraint(equalTo: clientName.bottomAnchor).isActive = true
+        workerName.widthAnchor.constraint(equalTo: inputsBackgroundView.widthAnchor).isActive = true
+        workerName.heightAnchor.constraint(equalToConstant:50).isActive = true
+        
         saveButton.centerXAnchor.constraint(equalTo: inputsBackgroundView.centerXAnchor).isActive = true
-        saveButton.topAnchor.constraint(equalTo: clientName.bottomAnchor, constant: 20).isActive = true
+        saveButton.topAnchor.constraint(equalTo: workerName.bottomAnchor, constant: 20).isActive = true
         saveButton.widthAnchor.constraint(equalTo: inputsBackgroundView.widthAnchor, constant: -20).isActive = true
         saveButton.heightAnchor.constraint(equalToConstant:50).isActive = true
         
@@ -187,6 +203,7 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         inputsBackgroundView.addSubview(taskDescription)
         inputsBackgroundView.addSubview(taskRate)
         inputsBackgroundView.addSubview(clientName)
+        inputsBackgroundView.addSubview(workerName)
         inputsBackgroundView.addSubview(saveButton)
         
         setupDownArrow()
@@ -203,7 +220,7 @@ class LogTimeController: UIViewController,UITextViewDelegate {
     override func viewDidLayoutSubviews() {
         inputsContainerView.isScrollEnabled = true
         let width = inputsContainerView.frame.size.width
-        let height = CGFloat(600.0)
+        let height = CGFloat(650.0)
         inputsContainerView.contentSize = CGSize(width:width, height:height)
     }
     
@@ -212,7 +229,6 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         self.dismiss(animated: true, completion: nil)
         
     }
-    
     
     
     func saveButtonPressed() {
@@ -225,7 +241,8 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         project.taskDescription = taskDescription.text!
         project.client = clientName.text!
         
-        
+        let dateNow = Date()
+        print(dateNow)
         
         do {
             try managedObjectContext.save()

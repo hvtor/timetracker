@@ -323,7 +323,6 @@ class ViewController: UIViewController {
         if hours == 24 {
             days += 1
             hours = 0
-            
         }
         
         let secondsVal = seconds > 9 ? "\(seconds)" : "0\(seconds)"
