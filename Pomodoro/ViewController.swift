@@ -22,6 +22,9 @@ class ViewController: UIViewController {
     
     var timerRunning = false
     
+    let userDefaults = UserDefaults()
+    var hoursBilled = Double()
+    var secondsBilledDefault = Double()
     let labelsContainerView: UIView = {
         let lcv = UIView()
         lcv.backgroundColor = UIColor.clear
@@ -269,11 +272,17 @@ class ViewController: UIViewController {
     }
     
     func tasksButtonPressed(sender: UIButton) {
-        print("tasks btn pressed")
+        let sourceSelectorTableViewController = ViewController()
+        let navigationController = UINavigationController(rootViewController: ProjectsTableViewController())
+        
+        self.present(navigationController, animated: true, completion: nil)
+        present(ProjectsTableViewController(), animated: true, completion: nil)
     }
     
     func logButtonPressed(sender: UIButton) {
         let logTimeViewController: LogTimeController = LogTimeController()
+        
+        
         logTimeViewController.view.backgroundColor = UIColor.clear
         logTimeViewController.modalPresentationStyle = .overCurrentContext
         self.present(logTimeViewController, animated: true, completion: nil)
@@ -324,13 +333,22 @@ class ViewController: UIViewController {
             days += 1
             hours = 0
         }
-        
+
         let secondsVal = seconds > 9 ? "\(seconds)" : "0\(seconds)"
         let minutesVal = minutes > 9 ? "\(minutes)" : "0\(minutes)"
         let hoursVal   = hours > 9 ? "\(hours)" : "0\(hours)"
         
         timeString = "\(hoursVal):\(minutesVal):\(secondsVal)"
         timerLabel.text = timeString
+        
+        var hoursSeconds = Double(hours*3600)
+        var minSeconds = Double(minutes*60)
+        
+         var secondsBilled = hoursSeconds + minSeconds + Double(seconds)
+         hoursBilled = secondsBilled/3600
+         let secondsBilledDefault = userDefaults.set(hoursBilled, forKey: "hoursBilled") as? Double
+        
+        print("Time in Hours :\(hoursBilled)")
     }
     
     

@@ -2,7 +2,7 @@
 //  Client+CoreDataProperties.swift
 //  Pomodoro
 //
-//  Created by Hemant Torsekar on 2016-09-15.
+//  Created by Hemant Torsekar on 2016-09-16.
 //  Copyright © 2016 Hemant Torsekar. All rights reserved.
 //
 
@@ -15,10 +15,10 @@ extension Client {
         return NSFetchRequest<Client>(entityName: "Client");
     }
 
-    @NSManaged public var name: String?
-    @NSManaged public var email: String?
     @NSManaged public var companyName: String?
-    @NSManaged public var project: Project?
+    @NSManaged public var email: String?
+    @NSManaged public var name: String?
+    @NSManaged public var project: NSSet?
 
 }
 

@@ -232,17 +232,28 @@ class LogTimeController: UIViewController,UITextViewDelegate {
     
     
     func saveButtonPressed() {
-        let entity = NSEntityDescription.entity(forEntityName: "Project", in: self.managedObjectContext)
+        let dateNow = NSDate()
+        print(dateNow)
+        
+        let projectEntity = NSEntityDescription.entity(forEntityName: "Project", in: self.managedObjectContext)
         
         let project = NSEntityDescription.insertNewObject(forEntityName: "Project", into: managedObjectContext) as! Project
+        
+        let clientEntity = NSEntityDescription.entity(forEntityName: "Client", in: self.managedObjectContext)
+        
+        let client = NSEntityDescription.insertNewObject(forEntityName: "Client", into: managedObjectContext) as! Client
         
         project.projectName = projectName.text!
         project.taskRate = decimalWithString(string: taskRate.text!)
         project.taskDescription = taskDescription.text!
-        project.client = clientName.text!
+        project.client = client
+        project.client = clientName.text! as! Client
         
-        let dateNow = Date()
-        print(dateNow)
+        project.startDate = dateNow
+        
+        project.endDate = nil
+        
+        
         
         do {
             try managedObjectContext.save()
