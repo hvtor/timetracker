@@ -22,7 +22,7 @@
 		E9C945BA1D885A370068DC0F /* PomodoroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C945B91D885A370068DC0F /* PomodoroUITests.swift */; };
 		E9C945C81D88650D0068DC0F /* PlayPauseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C945C71D88650D0068DC0F /* PlayPauseButton.swift */; };
 		E9C945CA1D8875040068DC0F /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C945C91D8875040068DC0F /* ActionButton.swift */; };
-		E9F8A4B61D890FEA0039C71A /* LogTimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F8A4B51D890FEA0039C71A /* LogTimeController.swift */; };
+		E9F8A4B61D890FEA0039C71A /* LogTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F8A4B51D890FEA0039C71A /* LogTimeViewController.swift */; };
 		E9F8A5141D8BBEB80039C71A /* ProjectsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9F8A5131D8BBEB80039C71A /* ProjectsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +65,7 @@
 		E9C945BB1D885A370068DC0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9C945C71D88650D0068DC0F /* PlayPauseButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayPauseButton.swift; sourceTree = "<group>"; };
 		E9C945C91D8875040068DC0F /* ActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
-		E9F8A4B51D890FEA0039C71A /* LogTimeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogTimeController.swift; sourceTree = "<group>"; };
+		E9F8A4B51D890FEA0039C71A /* LogTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogTimeViewController.swift; sourceTree = "<group>"; };
 		E9F8A5131D8BBEB80039C71A /* ProjectsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,8 +97,9 @@
 		E9C7399D1D8BFCE3008C1B90 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E9C945961D885A370068DC0F /* AppDelegate.swift */,
 				E9C945981D885A370068DC0F /* ViewController.swift */,
-				E9F8A4B51D890FEA0039C71A /* LogTimeController.swift */,
+				E9F8A4B51D890FEA0039C71A /* LogTimeViewController.swift */,
 				E9F8A5131D8BBEB80039C71A /* ProjectsTableViewController.swift */,
 			);
 			name = Controllers;
@@ -137,7 +138,6 @@
 			isa = PBXGroup;
 			children = (
 				E9F8A4C31D8A88CA0039C71A /* Models */,
-				E9C945961D885A370068DC0F /* AppDelegate.swift */,
 				E9C7399D1D8BFCE3008C1B90 /* Controllers */,
 				E9C7399E1D8BFCF0008C1B90 /* ViewComponents */,
 				E9C945A01D885A370068DC0F /* Assets.xcassets */,
@@ -326,7 +326,7 @@
 				E9C945CA1D8875040068DC0F /* ActionButton.swift in Sources */,
 				E9C7399C1D8BFCCC008C1B90 /* Worker+CoreDataProperties.swift in Sources */,
 				E9C7399A1D8BFCCC008C1B90 /* Project+CoreDataProperties.swift in Sources */,
-				E9F8A4B61D890FEA0039C71A /* LogTimeController.swift in Sources */,
+				E9F8A4B61D890FEA0039C71A /* LogTimeViewController.swift in Sources */,
 				E9C739991D8BFCCC008C1B90 /* Project+CoreDataClass.swift in Sources */,
 				E9C7399B1D8BFCCC008C1B90 /* Worker+CoreDataClass.swift in Sources */,
 			);

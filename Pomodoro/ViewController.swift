@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class ViewController: UIViewController {
-
+    
     var timer = Timer()
 
     var seconds: Int = 0
@@ -272,7 +272,6 @@ class ViewController: UIViewController {
     }
     
     func tasksButtonPressed(sender: UIButton) {
-        let sourceSelectorTableViewController = ViewController()
         let navigationController = UINavigationController(rootViewController: ProjectsTableViewController())
         
         self.present(navigationController, animated: true, completion: nil)
@@ -280,9 +279,8 @@ class ViewController: UIViewController {
     }
     
     func logButtonPressed(sender: UIButton) {
-        let logTimeViewController: LogTimeController = LogTimeController()
-        
-        
+        let logTimeViewController:LogTimeViewController = LogTimeViewController()
+
         logTimeViewController.view.backgroundColor = UIColor.clear
         logTimeViewController.modalPresentationStyle = .overCurrentContext
         self.present(logTimeViewController, animated: true, completion: nil)
@@ -341,12 +339,12 @@ class ViewController: UIViewController {
         timeString = "\(hoursVal):\(minutesVal):\(secondsVal)"
         timerLabel.text = timeString
         
-        var hoursSeconds = Double(hours*3600)
-        var minSeconds = Double(minutes*60)
+        let hoursSeconds = Double(hours*3600)
+        let minSeconds = Double(minutes*60)
         
-         var secondsBilled = hoursSeconds + minSeconds + Double(seconds)
+         let secondsBilled = hoursSeconds + minSeconds + Double(seconds)
          hoursBilled = secondsBilled/3600
-         let secondsBilledDefault = userDefaults.set(hoursBilled, forKey: "hoursBilled") as? Double
+         _ = userDefaults.set(hoursBilled, forKey: "hoursBilled")
         
         print("Time in Hours :\(hoursBilled)")
     }

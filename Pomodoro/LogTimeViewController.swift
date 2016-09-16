@@ -9,10 +9,11 @@
 import UIKit
 import CoreData
 
-class LogTimeController: UIViewController,UITextViewDelegate {
-    
+class LogTimeViewController : UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
+
     var project = [NSManagedObject]()
     var managedObjectContext : NSManagedObjectContext!
+    var hoursBilledDefaults : UserDefaults
     
     let downArrow: UIButton = {
         let da = UIButton()
@@ -247,11 +248,12 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         project.taskRate = decimalWithString(string: taskRate.text!)
         project.taskDescription = taskDescription.text!
         project.client = client
-        project.client = clientName.text! as! Client
+        project.client = clientName.text! as? Client
         
         project.startDate = dateNow
         
         project.endDate = nil
+        project.hoursBilled = (hoursBilledDefaults.object(forKey: "hoursBilled") as! Double)
         
         
         
@@ -274,15 +276,4 @@ class LogTimeController: UIViewController,UITextViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
