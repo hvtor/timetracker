@@ -11,6 +11,8 @@ import CoreData
 
 class ViewController: UIViewController {
     
+    var container: NSPersistentContainer!
+
     var timer = Timer()
 
     var seconds: Int = 0
@@ -22,7 +24,7 @@ class ViewController: UIViewController {
     
     var timerRunning = false
     
-    let userDefaults = UserDefaults()
+    let userDefaults = UserDefaults.standard
     var hoursBilled = Double()
     var secondsBilledDefault = Double()
     let labelsContainerView: UIView = {
@@ -55,7 +57,7 @@ class ViewController: UIViewController {
         let playBtn = PlayPauseButton()
         
         playBtn.layer.backgroundColor = UIColor(hexString: "#0082c7", alpha: 1.0).cgColor
-        playBtn.layer.borderWidth = 4.0
+        playBtn.layer.borderWidth = 24.0
         playBtn.layer.borderColor = UIColor(hexString: "#041922", alpha: 1.0).cgColor
         
         playBtn.translatesAutoresizingMaskIntoConstraints = false
@@ -96,8 +98,8 @@ class ViewController: UIViewController {
     let timerLabel : UILabel = {
         let tl = UILabel()
             let font = UIFont(name: "HelveticaNeue", size: 70.0)
-            tl.textColor = UIColor(hexString: "#FAFAFA", alpha: 1.0)
-            tl.backgroundColor = UIColor(hexString: "#123", alpha: 1.0)
+            tl.textColor = UIColor(hexString: "#123", alpha: 1.0)
+            tl.backgroundColor = UIColor(hexString: "#FAFAFA", alpha: 1.0)
             tl.layer.cornerRadius = 15.0
             tl.font = font
             tl.clipsToBounds = true
@@ -122,8 +124,8 @@ class ViewController: UIViewController {
     let tasksButton: ActionButton = {
         let tasksBtn = ActionButton()
         tasksBtn.backgroundColor = UIColor.white
-        tasksBtn.layer.borderColor = UIColor.white.cgColor
-        tasksBtn.layer.borderWidth = 0
+        tasksBtn.layer.borderColor = UIColor(hexString: "#123", alpha: 1.0).cgColor
+        tasksBtn.layer.borderWidth = 4
         tasksBtn.setImage(UIImage(named:"tasks.png"), for: .normal)
         tasksBtn.translatesAutoresizingMaskIntoConstraints = false
         return tasksBtn
@@ -132,17 +134,25 @@ class ViewController: UIViewController {
     let logButton: ActionButton = {
         let logBtn = ActionButton()
         logBtn.backgroundColor = UIColor.white
-        logBtn.layer.borderColor = UIColor.white.cgColor
-        logBtn.layer.borderWidth = 0
-        logBtn.setImage(UIImage(named:"log.png"), for: .normal)
+        logBtn.layer.borderColor = UIColor(hexString: "#123", alpha: 1.0).cgColor
+        logBtn.layer.borderWidth = 4
+        logBtn.setImage(UIImage(named:"logTime.png"), for: .normal)
         logBtn.translatesAutoresizingMaskIntoConstraints = false
         return logBtn
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-        view.backgroundColor = UIColor(hexString: "#003554", alpha: 1.0)
+        
+        let container = NSPersistentContainer(name: "Project38")
+        
+        container.loadPersistentStores { storeDescription, error in
+            if let error = error {
+                print("Unresolved error \(error)")
+            }
+        }
+        
+        view.backgroundColor = UIColor(hexString: "#FAFAFA", alpha: 1.0)
         // Adding Views to subviews
         view.addSubview(labelsContainerView)
         view.addSubview(buttonsContainerView)
@@ -172,8 +182,8 @@ class ViewController: UIViewController {
             setupLogTimeContainer()
                 setupLogTimeButton()
         
-        timerLabel.text = "00:00:00"
-        taskLabel.text = "Create an interface for TimeTracker App. Create two containers first. Then two labels with 0.5 multipliers. Then create your buttons in the container below."
+        timerLabel.text = "0"
+        taskLabel.text = ""
         
         tasksButton.addTarget(self, action: #selector(tasksButtonPressed), for: .touchUpInside)
         
@@ -279,7 +289,7 @@ class ViewController: UIViewController {
     }
     
     func logButtonPressed(sender: UIButton) {
-        let logTimeViewController:LogTimeViewController = LogTimeViewController()
+        var logTimeViewController = LogTimeViewController()
 
         logTimeViewController.view.backgroundColor = UIColor.clear
         logTimeViewController.modalPresentationStyle = .overCurrentContext
@@ -305,14 +315,14 @@ class ViewController: UIViewController {
     
     func touchedDown() {
         playPauseButton.layer.backgroundColor = UIColor(hexString: "#0C64AB", alpha: 1.0).cgColor
-        playPauseButton.layer.borderWidth = 6.0
+        playPauseButton.layer.borderWidth = 26.0
         playPauseButton.layer.borderColor = UIColor(hexString: "#041922", alpha: 1.0).cgColor
         
     }
     
     func touchUp() {
         playPauseButton.layer.backgroundColor = UIColor(hexString: "#0082c7", alpha: 1.0).cgColor
-        playPauseButton.layer.borderWidth = 4.0
+        playPauseButton.layer.borderWidth = 24.0
         playPauseButton.layer.borderColor = UIColor(hexString: "#041922", alpha: 1.0).cgColor
     }
     
@@ -332,11 +342,19 @@ class ViewController: UIViewController {
             hours = 0
         }
 
+//        UIView.animate(withDuration: 1, delay: 0, options: .repeat, animations: {
+//            self.playPauseButton.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+//            self.playPauseButton.transform = CGAffineTransform(scaleX: 1.00, y: 1.00)
+//            }, completion: nil)
         let secondsVal = seconds > 9 ? "\(seconds)" : "0\(seconds)"
         let minutesVal = minutes > 9 ? "\(minutes)" : "0\(minutes)"
         let hoursVal   = hours > 9 ? "\(hours)" : "0\(hours)"
         
-        timeString = "\(hoursVal):\(minutesVal):\(secondsVal)"
+        if hours < 1 {
+            timeString = "\(minutesVal):\(secondsVal)"
+        } else {
+            timeString = "\(hoursVal):\(minutesVal):\(secondsVal)"
+        }
         timerLabel.text = timeString
         
         let hoursSeconds = Double(hours*3600)
@@ -354,7 +372,4 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
-
