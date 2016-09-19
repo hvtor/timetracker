@@ -9,11 +9,14 @@
 import UIKit
 import CoreData
 
-class LogTimeViewController : UIViewController, UITextFieldDelegate, UIScrollViewDelegate {
+class LogTimeViewController: UIViewController {
 
-    var project = [NSManagedObject]()
+    
     var managedObjectContext : NSManagedObjectContext!
-    var hoursBilledDefaults : UserDefaults
+    var projectEntry: NSManagedObject!
+    var clientEntry: NSManagedObject!
+    
+    var hoursBilledDefaults = UserDefaults.standard
     
     let downArrow: UIButton = {
         let da = UIButton()
@@ -194,8 +197,10 @@ class LogTimeViewController : UIViewController, UITextFieldDelegate, UIScrollVie
 
     }
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
         view.addSubview(inputsContainerView)
         inputsContainerView.addSubview(inputsBackgroundView)
@@ -236,32 +241,37 @@ class LogTimeViewController : UIViewController, UITextFieldDelegate, UIScrollVie
         let dateNow = NSDate()
         print(dateNow)
         
-        let projectEntity = NSEntityDescription.entity(forEntityName: "Project", in: self.managedObjectContext)
+        let projectEntity = NSEntityDescription.entity(forEntityName: "Project", in: managedObjectContext)
         
-        let project = NSEntityDescription.insertNewObject(forEntityName: "Project", into: managedObjectContext) as! Project
+        let projectObject = NSManagedObject(entity: projectEntity!, insertInto: managedObjectContext)
         
-        let clientEntity = NSEntityDescription.entity(forEntityName: "Client", in: self.managedObjectContext)
+        // let fetchRequest = NSFetchRequest(entityName: "Project")
+        let clientEntity = NSEntityDescription.entity(forEntityName: "Client", in: managedObjectContext)
         
-        let client = NSEntityDescription.insertNewObject(forEntityName: "Client", into: managedObjectContext) as! Client
+        let clientObject = NSManagedObject(entity: clientEntity!, insertInto: managedObjectContext)
         
-        project.projectName = projectName.text!
-        project.taskRate = decimalWithString(string: taskRate.text!)
-        project.taskDescription = taskDescription.text!
-        project.client = client
-        project.client = clientName.text! as? Client
+        projectObject.projectName = projectName.text!
         
-        project.startDate = dateNow
+        projectObject.taskRate = decimalWithString(string: taskRate.text!)
+        projectObject.taskDescription = taskDescription.text!
+        projectObject.client = client
+        projectObject.client = clientName.text! as? String
         
-        project.endDate = nil
-        project.hoursBilled = (hoursBilledDefaults.object(forKey: "hoursBilled") as! Double)
+        projectObject.startDate = dateNow
         
-        
-        
+        // Needs to be updated
+        projectObject.endDate = dateNow
+
+        projectObject.hoursBilled = (hoursBilledDefaults.object(forKey: "hoursBilled") as! Double)
+
+        projectObject.dollarsBilled = 1.00
+        print(projectObject)
         do {
             try managedObjectContext.save()
         }catch {
+            print("Error in storing to Core Data: \(error)")
             fatalError("Error in storing to Core Data")
-            print("Error in storing to Core Data")
+            
         }
     }
 

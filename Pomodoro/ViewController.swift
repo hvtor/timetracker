@@ -144,7 +144,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let container = NSPersistentContainer(name: "Project38")
+        let container = NSPersistentContainer(name: "Project")
         
         container.loadPersistentStores { storeDescription, error in
             if let error = error {
@@ -182,7 +182,7 @@ class ViewController: UIViewController {
             setupLogTimeContainer()
                 setupLogTimeButton()
         
-        timerLabel.text = "0"
+        timerLabel.text = "00:00"
         taskLabel.text = ""
         
         tasksButton.addTarget(self, action: #selector(tasksButtonPressed), for: .touchUpInside)

@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E9C739971D8BFCCC008C1B90 /* Client+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C739911D8BFCCC008C1B90 /* Client+CoreDataClass.swift */; };
-		E9C739981D8BFCCC008C1B90 /* Client+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C739921D8BFCCC008C1B90 /* Client+CoreDataProperties.swift */; };
-		E9C739991D8BFCCC008C1B90 /* Project+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C739931D8BFCCC008C1B90 /* Project+CoreDataClass.swift */; };
-		E9C7399A1D8BFCCC008C1B90 /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C739941D8BFCCC008C1B90 /* Project+CoreDataProperties.swift */; };
-		E9C7399B1D8BFCCC008C1B90 /* Worker+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C739951D8BFCCC008C1B90 /* Worker+CoreDataClass.swift */; };
-		E9C7399C1D8BFCCC008C1B90 /* Worker+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C739961D8BFCCC008C1B90 /* Worker+CoreDataProperties.swift */; };
+		E9892F951D8DF220009D61F7 /* Project+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9892F8F1D8DF220009D61F7 /* Project+CoreDataClass.swift */; };
+		E9892F961D8DF220009D61F7 /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9892F901D8DF220009D61F7 /* Project+CoreDataProperties.swift */; };
+		E9892F971D8DF220009D61F7 /* Worker+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9892F911D8DF220009D61F7 /* Worker+CoreDataClass.swift */; };
+		E9892F981D8DF220009D61F7 /* Worker+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9892F921D8DF220009D61F7 /* Worker+CoreDataProperties.swift */; };
+		E9892F991D8DF220009D61F7 /* Client+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9892F931D8DF220009D61F7 /* Client+CoreDataClass.swift */; };
+		E9892F9A1D8DF220009D61F7 /* Client+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9892F941D8DF220009D61F7 /* Client+CoreDataProperties.swift */; };
 		E9C945971D885A370068DC0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C945961D885A370068DC0F /* AppDelegate.swift */; };
 		E9C945991D885A370068DC0F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C945981D885A370068DC0F /* ViewController.swift */; };
 		E9C9459F1D885A370068DC0F /* Pomodoro.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9C9459D1D885A370068DC0F /* Pomodoro.xcdatamodeld */; };
@@ -44,12 +44,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E9C739911D8BFCCC008C1B90 /* Client+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+CoreDataClass.swift"; sourceTree = "<group>"; };
-		E9C739921D8BFCCC008C1B90 /* Client+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		E9C739931D8BFCCC008C1B90 /* Project+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataClass.swift"; sourceTree = "<group>"; };
-		E9C739941D8BFCCC008C1B90 /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		E9C739951D8BFCCC008C1B90 /* Worker+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Worker+CoreDataClass.swift"; sourceTree = "<group>"; };
-		E9C739961D8BFCCC008C1B90 /* Worker+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Worker+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E9892F8F1D8DF220009D61F7 /* Project+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E9892F901D8DF220009D61F7 /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E9892F911D8DF220009D61F7 /* Worker+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Worker+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E9892F921D8DF220009D61F7 /* Worker+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Worker+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E9892F931D8DF220009D61F7 /* Client+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E9892F941D8DF220009D61F7 /* Client+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Client+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E9C945931D885A370068DC0F /* Pomodoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pomodoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9C945961D885A370068DC0F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9C945981D885A370068DC0F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -169,12 +169,12 @@
 		E9F8A4C31D8A88CA0039C71A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E9C739911D8BFCCC008C1B90 /* Client+CoreDataClass.swift */,
-				E9C739921D8BFCCC008C1B90 /* Client+CoreDataProperties.swift */,
-				E9C739931D8BFCCC008C1B90 /* Project+CoreDataClass.swift */,
-				E9C739941D8BFCCC008C1B90 /* Project+CoreDataProperties.swift */,
-				E9C739951D8BFCCC008C1B90 /* Worker+CoreDataClass.swift */,
-				E9C739961D8BFCCC008C1B90 /* Worker+CoreDataProperties.swift */,
+				E9892F8F1D8DF220009D61F7 /* Project+CoreDataClass.swift */,
+				E9892F901D8DF220009D61F7 /* Project+CoreDataProperties.swift */,
+				E9892F911D8DF220009D61F7 /* Worker+CoreDataClass.swift */,
+				E9892F921D8DF220009D61F7 /* Worker+CoreDataProperties.swift */,
+				E9892F931D8DF220009D61F7 /* Client+CoreDataClass.swift */,
+				E9892F941D8DF220009D61F7 /* Client+CoreDataProperties.swift */,
 			);
 			name = Models;
 			path = ..;
@@ -316,19 +316,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9C739971D8BFCCC008C1B90 /* Client+CoreDataClass.swift in Sources */,
+				E9892F981D8DF220009D61F7 /* Worker+CoreDataProperties.swift in Sources */,
+				E9892F9A1D8DF220009D61F7 /* Client+CoreDataProperties.swift in Sources */,
 				E9C945C81D88650D0068DC0F /* PlayPauseButton.swift in Sources */,
-				E9C739981D8BFCCC008C1B90 /* Client+CoreDataProperties.swift in Sources */,
+				E9892F951D8DF220009D61F7 /* Project+CoreDataClass.swift in Sources */,
 				E9C9459F1D885A370068DC0F /* Pomodoro.xcdatamodeld in Sources */,
 				E9C945991D885A370068DC0F /* ViewController.swift in Sources */,
 				E9F8A5141D8BBEB80039C71A /* ProjectsTableViewController.swift in Sources */,
 				E9C945971D885A370068DC0F /* AppDelegate.swift in Sources */,
 				E9C945CA1D8875040068DC0F /* ActionButton.swift in Sources */,
-				E9C7399C1D8BFCCC008C1B90 /* Worker+CoreDataProperties.swift in Sources */,
-				E9C7399A1D8BFCCC008C1B90 /* Project+CoreDataProperties.swift in Sources */,
+				E9892F991D8DF220009D61F7 /* Client+CoreDataClass.swift in Sources */,
+				E9892F961D8DF220009D61F7 /* Project+CoreDataProperties.swift in Sources */,
 				E9F8A4B61D890FEA0039C71A /* LogTimeViewController.swift in Sources */,
-				E9C739991D8BFCCC008C1B90 /* Project+CoreDataClass.swift in Sources */,
-				E9C7399B1D8BFCCC008C1B90 /* Worker+CoreDataClass.swift in Sources */,
+				E9892F971D8DF220009D61F7 /* Worker+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
