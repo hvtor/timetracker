@@ -24,8 +24,8 @@ class ProjectsTableViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-//        self.register(cellClass: projectCell, forCellReuseIdentifier: cellIdentifier)
         
+        tableView?.register(ProjectCell.self, forCellReuseIdentifier: cellIdentifier)
         
         navigationController?.navigationBar.backgroundColor = UIColor(hexString: "#006494", alpha: 1)
         
@@ -88,15 +88,15 @@ class ProjectsTableViewController: UITableViewController {
  
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        let projectCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
 
         let project = self.projects[indexPath.row]
         
-        cell.textLabel?.text = project.value(forKey: "projectName") as! String?
-        cell.textLabel?.textColor = UIColor(hexString: "#123", alpha: 1.0)
+        projectCell.textLabel?.text = project.value(forKey: "projectName") as! String?
+        projectCell.textLabel?.textColor = UIColor(hexString: "#123", alpha: 1.0)
 
-        return cell
+        return projectCell
     }
  
 
