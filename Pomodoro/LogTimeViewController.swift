@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class LogTimeViewController: UIViewController {
+class LogTimeViewController: UIViewController, UITextFieldDelegate {
 
     var container: NSPersistentContainer!
     var projectObject: NSManagedObject!
@@ -48,6 +48,7 @@ class LogTimeViewController: UIViewController {
     
     let projectName: UITextField = {
         let pn = UITextField()
+        pn.becomeFirstResponder()
         pn.attributedPlaceholder = NSAttributedString(string: "Enter Project Name", attributes: [NSForegroundColorAttributeName: UIColor(hexString:"#808080", alpha:1.0)])
         pn.textColor = UIColor.init(hexString: "#FAFAFA", alpha: 1.0)
         pn.font = UIFont(name: "Helvetica", size: 24.0)
@@ -235,13 +236,20 @@ class LogTimeViewController: UIViewController {
         inputsContainerView.contentSize = CGSize(width:width, height:height)
     }
     
+    
     func dismissViewController() {
-        
         self.dismiss(animated: true, completion: nil)
-        
     }
     
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        resignFirstResponder()
+        projectName.endEditing(true)
+        taskDescription.endEditing(true)
+        taskRate.endEditing(true)
+        clientName.endEditing(true)
+        workerName.endEditing(true)
+        
+    }
     func saveButtonPressed() {
 
         let dateNow = NSDate()
@@ -295,7 +303,7 @@ class LogTimeViewController: UIViewController {
         if self.moc.hasChanges {
             do {
                 try self.moc.save()
-                
+                print("Successfully Saved!")
             }catch {
                 print("Error in storing to Core Data: \(error)")
                 fatalError("Error in storing to Core Data")
@@ -304,6 +312,7 @@ class LogTimeViewController: UIViewController {
     }
     
     func clearFields() {
+        resignFirstResponder()
         clientName.text = ""
         taskRate.text = ""
         projectName.text = ""
