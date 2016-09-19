@@ -251,7 +251,7 @@ class LogTimeViewController: UIViewController {
         
         let container = appDelegate.persistentContainer
         
-        let moc = container.viewContext
+        self.moc = container.viewContext
         
         let projectEntity = NSEntityDescription.entity(forEntityName: "Project", in: moc)
         
@@ -284,23 +284,33 @@ class LogTimeViewController: UIViewController {
         projectObject.setValue(dollarsBilled, forKey: "dollarsBilled")
 
         print(projectObject)
-        do {
-            try moc.save()
-        }catch {
-            print("Error in storing to Core Data: \(error)")
-            fatalError("Error in storing to Core Data")
-        }    }
+        
+        saveContext()
+        clearFields()
+        dismissViewController()
+        
+    }
 
     func saveContext() {
-//        if container.viewContext.hasChanges {
+        if self.moc.hasChanges {
             do {
-                try moc.save()
+                try self.moc.save()
+                
             }catch {
                 print("Error in storing to Core Data: \(error)")
                 fatalError("Error in storing to Core Data")
             }
-//        }
+        }
     }
+    
+    func clearFields() {
+        clientName.text = ""
+        taskRate.text = ""
+        projectName.text = ""
+        taskDescription.text = ""
+        workerName.text = ""
+    }
+    
     
     func decimalWithString(string: String) -> NSDecimalNumber {
         let formatter = NumberFormatter()
