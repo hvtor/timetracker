@@ -11,12 +11,14 @@ import CoreData
 
 class ProjectsTableViewController: UITableViewController {
 
-    var managedObjectContext: NSManagedObjectContext!
+    var moc: NSManagedObjectContext!
+    
     var projects: [NSManagedObject]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         navigationController?.navigationBar.backgroundColor = UIColor(hexString: "#006494", alpha: 1)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(ProjectsTableViewController.done))
@@ -25,12 +27,22 @@ class ProjectsTableViewController: UITableViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let container = appDelegate.persistentContainer
+        
+        moc = container.viewContext
+        
+        fetchProjects()
+    }
+    
     func fetchProjects() {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Project")
         
         do {
-            let projectObjects = try managedObjectContext.execute(fetchRequest)
-            self.projects = projectObjects as! [NSManagedObject]
+            let fetchResult = try moc.fetch(fetchRequest)
+            projects = fetchResult as! [NSManagedObject]
         } catch let error as NSError {
             print("Could not fetch projects \(error), \(error.userInfo)")
         }
@@ -59,8 +71,7 @@ class ProjectsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-        
+        return 80
     }
  
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
