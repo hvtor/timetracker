@@ -14,15 +14,25 @@ class ProjectsTableViewController: UITableViewController {
     var moc: NSManagedObjectContext!
     
     var projects: [NSManagedObject]!
+    var projectCell: ProjectCell!
+    
+    var cellIdentifier: String = "Cell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+//        self.register(cellClass: projectCell, forCellReuseIdentifier: cellIdentifier)
         
         
         navigationController?.navigationBar.backgroundColor = UIColor(hexString: "#006494", alpha: 1)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(ProjectsTableViewController.done))
         
+        navigationController?.navigationBar.barTintColor = UIColor(hexString: "#123", alpha: 1.0)
+        navigationController?.navigationBar.tintColor = UIColor(hexString: "#FAFAFA", alpha: 1.0)
         view.backgroundColor = UIColor(hexString: "#FAFAFA", alpha: 1.0)
         
     }
@@ -31,18 +41,20 @@ class ProjectsTableViewController: UITableViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let container = appDelegate.persistentContainer
-        
-        moc = container.viewContext
+        self.moc = container.viewContext
         
         fetchProjects()
+        print(projects)
+
     }
     
     func fetchProjects() {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Project")
         
         do {
-            let fetchResult = try moc.fetch(fetchRequest)
-            projects = fetchResult as! [NSManagedObject]
+            let fetchResult = try self.moc.fetch(fetchRequest)
+            self.projects = fetchResult as! [NSManagedObject]
+            print(projects)
         } catch let error as NSError {
             print("Could not fetch projects \(error), \(error.userInfo)")
         }
@@ -71,15 +83,18 @@ class ProjectsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 44
     }
  
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        
 
-        let project = projects[indexPath.row]
+        let project = self.projects[indexPath.row]
         
         cell.textLabel?.text = project.value(forKey: "projectName") as! String?
+        cell.textLabel?.textColor = UIColor(hexString: "#123", alpha: 1.0)
 
         return cell
     }
