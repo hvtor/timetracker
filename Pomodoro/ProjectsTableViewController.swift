@@ -11,6 +11,8 @@ import CoreData
 
 class ProjectsTableViewController: UITableViewController {
 
+    var managedObjectContext: NSManagedObjectContext!
+    var projects: [NSManagedObject]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +23,18 @@ class ProjectsTableViewController: UITableViewController {
         
         view.backgroundColor = UIColor(hexString: "#FAFAFA", alpha: 1.0)
         
-
+    }
+    
+    func fetchProjects() {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Project")
+        
+        do {
+            let projectObjects = try managedObjectContext.execute(fetchRequest)
+            self.projects = projectObjects as! [NSManagedObject]
+        } catch let error as NSError {
+            print("Could not fetch projects \(error), \(error.userInfo)")
+        }
+        
     }
     
     func done() {
@@ -37,12 +50,12 @@ class ProjectsTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.projects.count
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -53,7 +66,9 @@ class ProjectsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
- 
+        let project = projects[indexPath.row]
+        
+        cell.textLabel?.text = project.value(forKey: "projectName") as! String?
 
         return cell
     }

@@ -289,7 +289,7 @@ class ViewController: UIViewController {
     }
     
     func logButtonPressed(sender: UIButton) {
-        var logTimeViewController = LogTimeViewController()
+        let logTimeViewController = LogTimeViewController()
 
         logTimeViewController.view.backgroundColor = UIColor.clear
         logTimeViewController.modalPresentationStyle = .overCurrentContext

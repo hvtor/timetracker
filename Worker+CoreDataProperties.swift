@@ -2,12 +2,13 @@
 //  Worker+CoreDataProperties.swift
 //  Pomodoro
 //
-//  Created by Hemant Torsekar on 2016-09-17.
+//  Created by Hemant Torsekar on 2016-09-19.
 //  Copyright © 2016 Hemant Torsekar. All rights reserved.
 //
 
 import Foundation
 import CoreData
+
 
 extension Worker {
 
@@ -16,6 +17,5 @@ extension Worker {
     }
 
     @NSManaged public var workerName: String?
-    @NSManaged public var project: Project?
 
 }

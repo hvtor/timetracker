@@ -11,10 +11,9 @@ import CoreData
 
 class LogTimeViewController: UIViewController {
 
-    
-    var managedObjectContext : NSManagedObjectContext!
-    var projectEntry: NSManagedObject!
-    var clientEntry: NSManagedObject!
+    var container: NSPersistentContainer!
+    var projectObject: NSManagedObject!
+    var moc: NSManagedObjectContext!
     
     var hoursBilledDefaults = UserDefaults.standard
     
@@ -200,8 +199,14 @@ class LogTimeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        var hoursBilled = hoursBilledDefaults.object(forKey: "hoursBilled") as! Double
+        let container = NSPersistentContainer(name: "Pomodoro")
         
+        container.loadPersistentStores(completionHandler: { storeDescription, error in
+                if let error = error {
+                    print("Unresolved error \(error)")
+                }
+            })
         view.addSubview(inputsContainerView)
         inputsContainerView.addSubview(inputsBackgroundView)
         inputsContainerView.addSubview(downArrow)
@@ -238,43 +243,65 @@ class LogTimeViewController: UIViewController {
     
     
     func saveButtonPressed() {
+
         let dateNow = NSDate()
         print(dateNow)
         
-        let projectEntity = NSEntityDescription.entity(forEntityName: "Project", in: managedObjectContext)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        let projectObject = NSManagedObject(entity: projectEntity!, insertInto: managedObjectContext)
+        let container = appDelegate.persistentContainer
+        
+        let moc = container.viewContext
+        
+        let projectEntity = NSEntityDescription.entity(forEntityName: "Project", in: moc)
+        
+//        let projectObject = NSManagedObject(entity: projectEntity!, insertInto: moc)
+        
+        let projectObject = NSEntityDescription.insertNewObject(forEntityName: "Project", into: moc)
         
         // let fetchRequest = NSFetchRequest(entityName: "Project")
-        let clientEntity = NSEntityDescription.entity(forEntityName: "Client", in: managedObjectContext)
+//        let clientEntity = NSEntityDescription.entity(forEntityName: "Client", in: moc)
         
-        let clientObject = NSManagedObject(entity: clientEntity!, insertInto: managedObjectContext)
+//        let clientObject = NSManagedObject(entity: clientEntity!, insertInto: moc)
         
-        projectObject.projectName = projectName.text!
+        // Hours Billed Obtained from userDefaults in ViewController
+        let hoursBilled = hoursBilledDefaults.object(forKey: "hoursBilled") as! Double
         
-        projectObject.taskRate = decimalWithString(string: taskRate.text!)
-        projectObject.taskDescription = taskDescription.text!
-        projectObject.client = client
-        projectObject.client = clientName.text! as? String
+        // Task Rate String Converted to Decimal Value
+        let taskRate = decimalWithString(string: self.taskRate.text!) as Double
         
-        projectObject.startDate = dateNow
+        // Calculation for Dollars Billed
+        let dollarsBilled = hoursBilled * taskRate
         
-        // Needs to be updated
-        projectObject.endDate = dateNow
+        projectObject.setValue(projectName.text!, forKey: "projectName")
+        projectObject.setValue(taskRate, forKey: "taskRate")
+        projectObject.setValue(taskDescription.text!, forKey: "taskDescription")
+        projectObject.setValue(clientName.text!, forKey: "clientName")
+        projectObject.setValue(workerName.text!, forKey: "workerName")
+        projectObject.setValue(dateNow, forKey: "startDate")
+        projectObject.setValue(Date(), forKey: "endDate")
+        projectObject.setValue(hoursBilled, forKey: "hoursBilled")
+        projectObject.setValue(dollarsBilled, forKey: "dollarsBilled")
 
-        projectObject.hoursBilled = (hoursBilledDefaults.object(forKey: "hoursBilled") as! Double)
-
-        projectObject.dollarsBilled = 1.00
         print(projectObject)
         do {
-            try managedObjectContext.save()
+            try moc.save()
         }catch {
             print("Error in storing to Core Data: \(error)")
             fatalError("Error in storing to Core Data")
-            
-        }
-    }
+        }    }
 
+    func saveContext() {
+//        if container.viewContext.hasChanges {
+            do {
+                try moc.save()
+            }catch {
+                print("Error in storing to Core Data: \(error)")
+                fatalError("Error in storing to Core Data")
+            }
+//        }
+    }
+    
     func decimalWithString(string: String) -> NSDecimalNumber {
         let formatter = NumberFormatter()
         formatter.generatesDecimalNumbers = true
